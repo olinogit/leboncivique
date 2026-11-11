@@ -6,6 +6,31 @@ Les commandes sont données pour **PowerShell (Windows)** et pour **macOS ou Lin
 
 ---
 
+## Méthode rapide : script automatique
+
+Une fois les prérequis installés (section 1) et la banque rangée hors du dépôt (section 3), un script enchaîne les étapes 2 à 6. Il vérifie la version de Node, installe les dépendances, génère le SQL, crée `.dev.vars`, crée la base D1 locale et charge les questions, puis lance le site.
+
+```powershell
+# Windows (PowerShell), depuis le dossier du dépôt
+.\scripts\local-deploy.ps1                                   # banque dans C:\leboncivique-prive\questions.json
+.\scripts\local-deploy.ps1 -Questions "D:\prive\questions.json"
+.\scripts\local-deploy.ps1 -Reset                            # repart d'une base locale vide
+.\scripts\local-deploy.ps1 -NoStart                          # prépare sans lancer le serveur
+```
+
+Si PowerShell refuse d'exécuter le script : `powershell -ExecutionPolicy Bypass -File .\scripts\local-deploy.ps1`.
+
+```sh
+# macOS / Linux
+./scripts/local-deploy.sh                                     # banque dans ~/leboncivique-prive/questions.json
+./scripts/local-deploy.sh /chemin/vers/questions.json --reset
+./scripts/local-deploy.sh --no-start
+```
+
+Le script s'arrête avec un message clair si Node est trop ancien, si la banque est introuvable ou si elle se trouve dans le dossier du dépôt. Il conserve un `.dev.vars` existant. Les sections suivantes détaillent ce qu'il fait, pour le faire à la main.
+
+---
+
 ## 1. Prérequis
 
 | Outil | Version | Installation |
