@@ -53,6 +53,7 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
     {alt?.en && <link rel="alternate" hreflang="en" href={`${site}${alt.en}`} />}
     {alt?.fr && <link rel="alternate" hreflang="x-default" href={`${site}${alt.fr}`} />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#ffffff" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Le bon civique" />
@@ -78,7 +79,7 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href={ROUTES.home[lang]}>
-          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="10" fill="#0d111b"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="#0098f2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="18" fill="#0d111b"/><path d="M19 12v38" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="37" r="13" fill="none" stroke="#fff" stroke-width="7"/><path d="M27.5 37.5l4 4 8-8.5" fill="none" stroke="#0098f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Le bon civique
         </a>
         <nav class="site-nav" aria-label={t('Navigation principale', 'Main navigation')}>
