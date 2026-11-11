@@ -53,6 +53,10 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000
 
     <!-- Écran 2 : question -->
     <section id="screen-quiz" class="card" hidden aria-labelledby="q-text">
+      <div class="quiz-context">
+        <span class="proc-pill"><span class="proc-label">Démarche</span> <b id="q-proc"></b></span>
+        <span class="quiz-kind" id="q-kind"></span>
+      </div>
       <div class="progress">
         <span id="q-progress">Question 1 sur 10</span>
         <span id="q-timer" class="timer" hidden role="timer" aria-live="off"></span>

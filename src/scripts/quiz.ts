@@ -28,6 +28,7 @@ const root = $('quiz');
 const LETTERS = ['A', 'B', 'C', 'D'];
 const LEVELS = { maitrise: 'Maîtrisé', bon: 'Bon niveau', fragile: 'Fragile', lacune: 'À travailler' } as const;
 const PROC = { csp: 'Carte de séjour pluriannuelle', cr: 'Carte de résident', nat: 'Naturalisation' } as Record<string, string>;
+const PROC_SHORT = { csp: 'Carte de séjour pluriannuelle (CSP)', cr: 'Carte de résident (CR)', nat: 'Naturalisation' } as Record<string, string>;
 
 const state = {
   mode: 'instant' as Mode,
@@ -129,7 +130,7 @@ form.addEventListener('submit', async (ev) => {
   $<HTMLButtonElement>('start-btn').disabled = true;
   try {
     const exam = fd.get('exam') === '1';
-    const s = await api<{ total: number; mode: Mode; exam: boolean; durationS: number | null }>('/api/session', {
+    const s = await api<{ total: number; procedure: string; mode: Mode; exam: boolean; durationS: number | null }>('/api/session', {
       procedure: fd.get('procedure'),
       mode: fd.get('mode'),
       exam,
@@ -140,6 +141,8 @@ form.addEventListener('submit', async (ev) => {
     state.exam = s.exam;
     state.total = s.total;
     state.results = null;
+    $('q-proc').textContent = PROC_SHORT[s.procedure] ?? PROC[s.procedure] ?? '';
+    $('q-kind').textContent = s.exam ? `Examen blanc · ${s.total} questions` : `Série d'entraînement · ${s.total} questions`;
     startTimer(s.durationS);
     show('quiz');
     await load(0);
