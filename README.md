@@ -44,6 +44,8 @@ public/_headers       CSP, HSTS, Permissions-Policy, etc.
 
 ## Développement local
 
+Procédure détaillée (Windows, macOS, Linux) : [docs/local-deployment.md](docs/local-deployment.md).
+
 ```sh
 npm ci
 cp .dev.vars.example .dev.vars
