@@ -7,8 +7,9 @@
 #   --seed-only  met seulement à jour la banque de questions en production
 #   --yes        ne demande pas de confirmation avant les étapes distantes
 #
-# Paramètres lus dans scripts/deploy.config.env (copier deploy.config.example.env),
-# ou dans le fichier indiqué par $LBC_DEPLOY_CONFIG.
+# Paramètres lus dans scripts/deploy.config.env, ou dans le fichier indiqué par
+# $LBC_DEPLOY_CONFIG. S'il n'existe pas, il est créé à partir de
+# deploy.config.example.env et la clé publique Turnstile est demandée.
 # Voir docs/production-deployment.md pour le détail.
 set -euo pipefail
 
@@ -35,10 +36,27 @@ confirm() {
   case "$r" in o|O|oui|OUI|y|Y) return 0 ;; *) echo "Annulé."; exit 1 ;; esac
 }
 
-[ -f "$CONFIG" ] || fail "$CONFIG introuvable. Copiez scripts/deploy.config.example.env en scripts/deploy.config.env et complétez-le."
+EXAMPLE="$APP/scripts/deploy.config.example.env"
+if [ ! -f "$CONFIG" ]; then
+  [ -f "$EXAMPLE" ] || fail "Modèle introuvable : $EXAMPLE"
+  mkdir -p "$(dirname "$CONFIG")"
+  cp "$EXAMPLE" "$CONFIG"
+  echo "Configuration créée : $CONFIG (copie de deploy.config.example.env)."
+fi
 # shellcheck disable=SC1090
 set -a; . "$CONFIG"; set +a
-: "${DOMAIN:?DOMAIN manquant dans config.env}"
+: "${DOMAIN:?DOMAIN manquant dans $CONFIG}"
+if [ -z "${PUBLIC_TURNSTILE_SITEKEY:-}" ] && [ "$SEED_ONLY" -eq 0 ]; then
+  { [ "$YES" -eq 0 ] && [ -t 0 ]; } || fail "PUBLIC_TURNSTILE_SITEKEY est vide dans $CONFIG : renseignez la clé publique du widget Turnstile."
+  read -r -p "Clé publique (site key) du widget Turnstile de $DOMAIN : " PUBLIC_TURNSTILE_SITEKEY
+  [ -n "$PUBLIC_TURNSTILE_SITEKEY" ] || fail "Clé publique Turnstile vide."
+  node -e '
+    const fs=require("fs");const [f,k]=process.argv.slice(1);let s=fs.readFileSync(f,"utf8");
+    s=/^PUBLIC_TURNSTILE_SITEKEY=.*$/m.test(s)?s.replace(/^PUBLIC_TURNSTILE_SITEKEY=.*$/m,"PUBLIC_TURNSTILE_SITEKEY="+k):s+"\nPUBLIC_TURNSTILE_SITEKEY="+k+"\n";
+    fs.writeFileSync(f,s);
+  ' "$CONFIG" "$PUBLIC_TURNSTILE_SITEKEY"
+  echo "Clé publique enregistrée dans $CONFIG."
+fi
 : "${D1_LOCATION:=weur}"
 
 cd "$APP"
@@ -114,7 +132,7 @@ else
 fi
 
 step "6/8 Clé publique Turnstile"
-: "${PUBLIC_TURNSTILE_SITEKEY:?PUBLIC_TURNSTILE_SITEKEY manquant dans config.env}"
+: "${PUBLIC_TURNSTILE_SITEKEY:?PUBLIC_TURNSTILE_SITEKEY manquant dans $CONFIG}"
 case "$PUBLIC_TURNSTILE_SITEKEY" in 1x0000*|2x0000*|3x0000*) fail "PUBLIC_TURNSTILE_SITEKEY est une clé de test : utilisez celle du widget de $DOMAIN." ;; esac
 export PUBLIC_TURNSTILE_SITEKEY
 

@@ -11,13 +11,9 @@ Les scripts `scripts/deploy-production.sh` (macOS, Linux) et `scripts/deploy-pro
 - Un widget Turnstile « Managed » créé pour le domaine : sa clé publique (site key) et sa clé secrète.
 - La banque privée `questions.json`, par défaut dans `~/leboncivique-prive/` (macOS, Linux) ou `C:\leboncivique-prive\` (Windows).
 
-## Configuration (une fois)
+## Configuration
 
-```sh
-cp scripts/deploy.config.example.env scripts/deploy.config.env
-```
-
-Renseigner `PUBLIC_TURNSTILE_SITEKEY` dans `scripts/deploy.config.env`. Ce fichier ne contient aucun secret et n'est pas versionné (`.gitignore`). Un autre emplacement peut être indiqué avec la variable `LBC_DEPLOY_CONFIG`.
+Rien à préparer : au premier lancement, le script copie `scripts/deploy.config.example.env` en `scripts/deploy.config.env`, puis demande la clé publique (site key) du widget Turnstile et l'y enregistre. Ce fichier ne contient aucun secret et n'est pas versionné (`.gitignore`). Il peut aussi être rempli à la main, ou placé ailleurs avec la variable `LBC_DEPLOY_CONFIG`. Avec `--yes` / `-Yes`, la clé doit déjà y figurer.
 
 ## Premier déploiement et mises à jour du site
 

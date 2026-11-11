@@ -69,8 +69,8 @@ En local (`ENVIRONMENT=development`, sans `TURNSTILE_SECRET`), la vérification 
    - Règle WAF de limitation de débit sur `/api/*` (par exemple 60 requêtes / 10 s par IP → blocage 10 min).
 3. **D1, secrets et déploiement** : créer un widget Turnstile « Managed » pour `leboncivique.fr`, puis lancer le script de mise en production, qui crée la base D1 en Europe, applique les migrations, charge la banque, crée les secrets et déploie le site. Procédure détaillée : [docs/production-deployment.md](docs/production-deployment.md).
    ```sh
-   cp scripts/deploy.config.example.env scripts/deploy.config.env   # renseigner la clé publique Turnstile
-   ./scripts/deploy-production.sh /chemin/privé/questions.json        # Windows : .\scripts\deploy-production.ps1 -Questions ...
+   ./scripts/deploy-production.sh /chemin/privé/questions.json   # Windows : .\scripts\deploy-production.ps1 -Questions ...
+   # au premier lancement, crée scripts/deploy.config.env et demande la clé publique Turnstile
    ```
 4. Committer `wrangler.jsonc` s'il a reçu l'identifiant de la base D1.
 5. **DNS** : enregistrements CAA (`0 issue "letsencrypt.org"`, `0 issue "pki.goog"`, `0 issue "digicert.com"` selon les autorités utilisées par Cloudflare, `0 iodef "mailto:securite@leboncivique.fr"`), et, même sans envoi de courriel : `TXT "v=spf1 -all"`, `_dmarc TXT "v=DMARC1; p=reject;"`.

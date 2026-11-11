@@ -6,8 +6,9 @@
 #   -SeedOnly  met seulement à jour la banque de questions en production
 #   -Yes       ne demande pas de confirmation avant les étapes distantes
 #
-# Paramètres lus dans scripts\deploy.config.env (copier deploy.config.example.env),
-# ou dans le fichier indiqué par $env:LBC_DEPLOY_CONFIG.
+# Paramètres lus dans scripts\deploy.config.env, ou dans le fichier indiqué par
+# $env:LBC_DEPLOY_CONFIG. S'il n'existe pas, il est créé à partir de
+# deploy.config.example.env et la clé publique Turnstile est demandée.
 # Voir docs\production-deployment.md pour le détail.
 #
 # Si PowerShell refuse le script : Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
@@ -31,12 +32,30 @@ function Confirm-Step($m) {
 }
 
 $cfgPath = if ($env:LBC_DEPLOY_CONFIG) { $env:LBC_DEPLOY_CONFIG } else { Join-Path $PSScriptRoot 'deploy.config.env' }
-if (-not (Test-Path $cfgPath)) { Fail "$cfgPath introuvable. Copiez scripts\deploy.config.example.env en scripts\deploy.config.env et complétez-le." }
+$example = Join-Path $PSScriptRoot 'deploy.config.example.env'
+if (-not (Test-Path $cfgPath)) {
+  if (-not (Test-Path $example)) { Fail "Modèle introuvable : $example" }
+  $cfgDir = Split-Path -Parent $cfgPath
+  if ($cfgDir -and -not (Test-Path $cfgDir)) { New-Item -ItemType Directory -Path $cfgDir | Out-Null }
+  Copy-Item $example $cfgPath
+  Write-Host "Configuration créée : $cfgPath (copie de deploy.config.example.env)."
+}
 $cfg = @{}
 Get-Content $cfgPath | Where-Object { $_ -match '^\s*([A-Z_]+)\s*=\s*(.*)$' } | ForEach-Object {
   $null = $_ -match '^\s*([A-Z_]+)\s*=\s*(.*)$'; $cfg[$Matches[1]] = $Matches[2].Trim().Trim('"')
 }
-$Domain = $cfg['DOMAIN']; if (-not $Domain) { Fail 'DOMAIN manquant dans config.env' }
+$Domain = $cfg['DOMAIN']; if (-not $Domain) { Fail "DOMAIN manquant dans $cfgPath" }
+if (-not $cfg['PUBLIC_TURNSTILE_SITEKEY'] -and -not $SeedOnly) {
+  if ($Yes) { Fail "PUBLIC_TURNSTILE_SITEKEY est vide dans $cfgPath : renseignez la clé publique du widget Turnstile." }
+  $key = (Read-Host "Clé publique (site key) du widget Turnstile de $Domain").Trim()
+  if (-not $key) { Fail 'Clé publique Turnstile vide.' }
+  $text = Get-Content $cfgPath -Raw
+  if ($text -match '(?m)^PUBLIC_TURNSTILE_SITEKEY=.*$') { $text = $text -replace '(?m)^PUBLIC_TURNSTILE_SITEKEY=.*$', "PUBLIC_TURNSTILE_SITEKEY=$key" }
+  else { $text = $text.TrimEnd() + "`nPUBLIC_TURNSTILE_SITEKEY=$key`n" }
+  [IO.File]::WriteAllText((Resolve-Path $cfgPath).Path, $text)
+  $cfg['PUBLIC_TURNSTILE_SITEKEY'] = $key
+  Write-Host "Clé publique enregistrée dans $cfgPath."
+}
 $Location = if ($cfg['D1_LOCATION']) { $cfg['D1_LOCATION'] } else { 'weur' }
 
 Set-Location $App
@@ -98,7 +117,7 @@ if ($secrets -notmatch '"TURNSTILE_SECRET"') {
 
 Step '6/8 Clé publique Turnstile'
 $siteKey = $cfg['PUBLIC_TURNSTILE_SITEKEY']
-if (-not $siteKey) { Fail 'PUBLIC_TURNSTILE_SITEKEY manquant dans config.env' }
+if (-not $siteKey) { Fail "PUBLIC_TURNSTILE_SITEKEY manquant dans $cfgPath" }
 if ($siteKey -match '^[123]x0000') { Fail "PUBLIC_TURNSTILE_SITEKEY est une clé de test : utilisez celle du widget de $Domain." }
 $env:PUBLIC_TURNSTILE_SITEKEY = $siteKey
 
