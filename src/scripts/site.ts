@@ -13,3 +13,18 @@ btn?.addEventListener('click', () => {
   apply(on);
   try { localStorage.setItem(KEY, on ? '1' : '0'); } catch { /* ignoré */ }
 });
+
+// Menu burger (mobile)
+const header = document.querySelector<HTMLElement>('.site-header');
+const toggle = document.getElementById('menu-toggle');
+function setMenu(open: boolean) {
+  header?.classList.toggle('open', open);
+  toggle?.setAttribute('aria-expanded', String(open));
+  const label = open ? toggle?.dataset.labelClose : toggle?.dataset.labelOpen;
+  if (label) toggle?.setAttribute('aria-label', label);
+}
+toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') { setMenu(false); toggle.focus(); }
+});
+window.matchMedia('(min-width: 900px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });

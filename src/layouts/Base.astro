@@ -74,7 +74,7 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
           <svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="18" fill="#0d111b"/><path d="M19 12v38" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="37" r="13" fill="none" stroke="#fff" stroke-width="7"/><path d="M27.5 37.5l4 4 8-8.5" fill="none" stroke="#0098f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Le bon civique
         </a>
-        <nav class="site-nav" aria-label={t('Navigation principale', 'Main navigation')}>
+        <nav class="site-nav" id="site-nav" aria-label={t('Navigation principale', 'Main navigation')}>
           <ul>
             {NAV.map((k) => (
               <li><a href={href(k)} aria-current={k === page ? 'page' : undefined}>{LABELS[k][lang]}</a></li>
@@ -84,6 +84,9 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
         </nav>
         <div class="header-tools">
           <a class="lang" href={otherHref} hreflang={other} lang={other}>{other === 'en' ? 'English' : 'Français'}</a>
+          <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label={t('Ouvrir le menu', 'Open menu')} data-label-open={t('Ouvrir le menu', 'Open menu')} data-label-close={t('Fermer le menu', 'Close menu')}>
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path class="bar-top" d="M5 6h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="bar-mid" d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path class="bar-bot" d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
         </div>
       </div>
     </header>
