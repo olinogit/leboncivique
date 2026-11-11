@@ -16,6 +16,20 @@
   {
     "theme": "Principes et valeurs de la République",
     "kind": "knowledge",
+    "text": "Quels sont des symboles officiels de la République française ?",
+    "options": [
+      "Le drapeau européen",
+      "Le drapeau, la devise et l'hymne national",
+      "Le coq et la tour Eiffel",
+      "La Croix de Lorraine et le blason royal"
+    ],
+    "answer": "Le drapeau, la devise et l'hymne national",
+    "explanation": "Le drapeau tricolore, Marianne, la devise « Liberté, Égalité, Fraternité », l'hymne national (la Marseillaise), le 14 juillet et le sceau de l'État.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/les-symboles-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
     "text": "Quelle est la devise de la République française ?",
     "options": [
       "Liberté, Égalité, Fraternité",
@@ -30,86 +44,72 @@
   {
     "theme": "Principes et valeurs de la République",
     "kind": "knowledge",
-    "text": "Qu'est-ce que le pouvoir exécutif ? Le pouvoir :",
+    "text": "Une personne peut-elle changer librement de religion ?",
     "options": [
-      "De faire appliquer les lois",
-      "De voter les lois",
-      "De juger les litiges",
-      "De réviser la Constitution"
+      "Non, c'est interdit par la loi",
+      "Seulement avec l'accord de la mairie",
+      "Non, sauf autorisation judiciaire",
+      "Oui, la liberté de conscience le garantit"
     ],
-    "answer": "De faire appliquer les lois",
-    "explanation": "De faire appliquer les lois ; il est exercé par le Président de la République et le gouvernement.",
+    "answer": "Oui, la liberté de conscience le garantit",
+    "explanation": "Oui, la liberté de conscience et de culte est garantie par la loi.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/laicite/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "A-t-on le droit de ne pas respecter une loi ?",
+    "options": [
+      "Oui, pour les étrangers uniquement",
+      "Oui, une fois par an",
+      "Non, la loi s'impose à tous",
+      "Oui, si on n'est pas d'accord"
+    ],
+    "answer": "Non, la loi s'impose à tous",
+    "explanation": "Non, la loi s'impose à tous et sa violation peut être sanctionnée.",
     "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
   },
   {
     "theme": "Principes et valeurs de la République",
     "kind": "knowledge",
-    "text": "Qui peut voter aux élections en France ?",
+    "text": "La liberté d'expression sur les réseaux sociaux en France est :",
     "options": [
-      "Les personnes nées en France uniquement",
-      "Les citoyens français majeurs inscrits sur les listes électorales",
-      "Toute personne résidant en France",
-      "Les citoyens européens uniquement"
+      "Totale et sans aucune limite",
+      "Interdite pour les sujets politiques",
+      "Réservée aux personnes majeures et de nationalité française",
+      "Garantie mais limitée par la loi (interdiction des propos racistes, diffamatoires ou incitant à la haine)"
     ],
-    "answer": "Les citoyens français majeurs inscrits sur les listes électorales",
-    "explanation": "Les citoyens français majeurs, inscrits sur les listes électorales.",
-    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/democratie-et-droit-de-vote/"
-  },
-  {
-    "theme": "Principes et valeurs de la République",
-    "kind": "knowledge",
-    "text": "À quelle fréquence les élections européennes sont-elles organisées ?",
-    "options": [
-      "Tous les 3 ans",
-      "Tous les 5 ans",
-      "Tous les 4 ans",
-      "Tous les 7 ans"
-    ],
-    "answer": "Tous les 5 ans",
-    "explanation": "Tous les 5 ans.",
-    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/institutions-europeennes/"
-  },
-  {
-    "theme": "Principes et valeurs de la République",
-    "kind": "knowledge",
-    "text": "Qu'est-ce qu'une liberté ?",
-    "options": [
-      "Une obligation imposée par l'État",
-      "La possibilité d'agir ou de penser selon sa propre volonté, dans le respect de la loi et des droits d'autrui",
-      "Le droit de faire tout ce que l'on veut sans aucune limite",
-      "Un privilège réservé à certains citoyens"
-    ],
-    "answer": "La possibilité d'agir ou de penser selon sa propre volonté, dans le respect de la loi et des droits d'autrui",
-    "explanation": "Une liberté est la possibilité d'agir ou de penser selon sa propre volonté, dans les limites fixées par la loi afin de respecter les droits d'autrui.",
+    "answer": "Garantie mais limitée par la loi (interdiction des propos racistes, diffamatoires ou incitant à la haine)",
+    "explanation": "La liberté d'expression s'applique aussi sur internet, mais elle est encadrée par la loi : injure, diffamation, incitation à la haine ou au terrorisme sont punies.",
     "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
   },
   {
     "theme": "Principes et valeurs de la République",
     "kind": "knowledge",
-    "text": "L'inscription sur les listes électorales est :",
+    "text": "Qu'est-ce que la liberté d'association ?",
     "options": [
-      "Réservée aux personnes de plus de 25 ans",
-      "Payante",
-      "Obligatoire pour pouvoir voter",
-      "Facultative et sans effet sur le vote"
+      "Le droit de voter à plusieurs élections",
+      "Le droit de changer de nationalité",
+      "Le droit de créer librement une association ou d'y adhérer",
+      "Le droit de se marier librement"
     ],
-    "answer": "Obligatoire pour pouvoir voter",
-    "explanation": "Il faut être inscrit sur les listes électorales de sa commune pour pouvoir voter ; l'inscription est désormais automatique pour les jeunes majeurs mais reste une démarche obligatoire dans les autres cas.",
-    "source": "https://www.vie-publique.fr/"
+    "answer": "Le droit de créer librement une association ou d'y adhérer",
+    "explanation": "La liberté d'association permet à toute personne de créer une association ou d'y adhérer librement, sans autorisation préalable de l'État.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
   },
   {
     "theme": "Principes et valeurs de la République",
     "kind": "knowledge",
-    "text": "Quelle est l'une des voies possibles pour modifier la Constitution ?",
+    "text": "Quel jour célèbre-t-on officiellement la laïcité en France ?",
     "options": [
-      "Une décision du Conseil d'État",
-      "Un vote à la majorité simple de l'Assemblée nationale seule",
-      "Le référendum ou le vote au Congrès du Parlement à la majorité des 3/5e",
-      "Un simple décret du président de la République"
+      "Le 1er mai",
+      "Le 9 décembre",
+      "Le 14 juillet",
+      "Le 8 mai"
     ],
-    "answer": "Le référendum ou le vote au Congrès du Parlement à la majorité des 3/5e",
-    "explanation": "La révision constitutionnelle est adoptée soit par référendum, soit par un vote du Congrès (Assemblée nationale et Sénat réunis) à la majorité des trois cinquièmes.",
-    "source": "https://www.vie-publique.fr/"
+    "answer": "Le 9 décembre",
+    "explanation": "Le 9 décembre, date anniversaire de la loi de 1905, est la journée nationale de la laïcité en France.",
+    "source": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000508749/"
   },
   {
     "theme": "Principes et valeurs de la République",
@@ -138,6 +138,146 @@
     "answer": "Il est libre de changer de religion : la liberté de conscience est garantie",
     "explanation": "La liberté de conscience permet de croire, de ne pas croire ou de changer de religion librement.",
     "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "De quand date la Constitution de la Ve République ?",
+    "options": [
+      "4 août 1995",
+      "4 octobre 1958",
+      "14 juillet 1789",
+      "27 octobre 1946"
+    ],
+    "answer": "4 octobre 1958",
+    "explanation": "Du 4 octobre 1958.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/la-cinquieme-republique/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "L'autorité judiciaire est exercée par :",
+    "options": [
+      "Le gouvernement",
+      "Les préfets",
+      "Les juges et les tribunaux",
+      "Le Parlement"
+    ],
+    "answer": "Les juges et les tribunaux",
+    "explanation": "Les juges et les tribunaux.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Pour combien de temps sont élus les sénateurs ?",
+    "options": [
+      "6 ans",
+      "5 ans",
+      "9 ans",
+      "4 ans"
+    ],
+    "answer": "6 ans",
+    "explanation": "6 ans.",
+    "source": "https://www.senat.fr"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui sanctionne l'auteur d'un vol ?",
+    "options": [
+      "La police seule",
+      "Le maire",
+      "Le préfet",
+      "La justice, via un tribunal"
+    ],
+    "answer": "La justice, via un tribunal",
+    "explanation": "La justice, par l'intermédiaire d'un tribunal.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui est le préfet ?",
+    "options": [
+      "Le chef de la police nationale",
+      "Un élu local",
+      "Le président du tribunal",
+      "Le représentant de l'État dans le département"
+    ],
+    "answer": "Le représentant de l'État dans le département",
+    "explanation": "Le représentant de l'État dans le département, nommé par le gouvernement.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/organisation-de-la-republique-fran%C3%A7aise/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui élit les députés européens ?",
+    "options": [
+      "Le Conseil européen",
+      "Les gouvernements nationaux",
+      "Les citoyens des États membres de l'Union européenne",
+      "Les parlements nationaux"
+    ],
+    "answer": "Les citoyens des États membres de l'Union européenne",
+    "explanation": "Les citoyens des États membres de l'Union européenne, au suffrage universel direct.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/institutions-europeennes/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quelles sont les fonctions du maire ?",
+    "options": [
+      "Nommer les préfets",
+      "Juger les litiges civils",
+      "Diriger l'administration communale, exécuter les lois et célébrer les mariages civils",
+      "Voter les lois nationales"
+    ],
+    "answer": "Diriger l'administration communale, exécuter les lois et célébrer les mariages civils",
+    "explanation": "Le maire dirige les services municipaux, exécute les décisions du conseil municipal, est responsable de l'état civil et agit comme représentant de l'État dans la commune (publication des lois, organisation des élections).",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quelle est la durée du mandat des sénateurs ?",
+    "options": [
+      "4 ans",
+      "6 ans",
+      "5 ans",
+      "9 ans"
+    ],
+    "answer": "6 ans",
+    "explanation": "Les sénateurs sont élus pour un mandat de 6 ans, le Sénat étant renouvelé par moitié tous les 3 ans.",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quel est le rôle du Conseil constitutionnel ?",
+    "options": [
+      "Vérifier que les lois sont conformes à la Constitution",
+      "Juger les crimes les plus graves",
+      "Nommer le Premier ministre",
+      "Administrer les collectivités locales"
+    ],
+    "answer": "Vérifier que les lois sont conformes à la Constitution",
+    "explanation": "Le Conseil constitutionnel veille à la conformité des lois à la Constitution et contrôle la régularité des élections nationales et des référendums.",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Où est le siège de la Banque centrale européenne ?",
+    "options": [
+      "Bruxelles (Belgique)",
+      "Strasbourg (France)",
+      "Luxembourg",
+      "Francfort (Allemagne)"
+    ],
+    "answer": "Francfort (Allemagne)",
+    "explanation": "La Banque centrale européenne (BCE) a son siège à Francfort-sur-le-Main, en Allemagne.",
+    "source": "https://www.touteleurope.eu/"
   },
   {
     "theme": "Droits et devoirs",
