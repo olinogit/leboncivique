@@ -1,0 +1,1374 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quizz avec mise en situation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2a4a;
+  --ink-soft:#3c4a68;
+  --paper:#f6f3ea;
+  --paper-alt:#efe9d8;
+  --card:#fffdf8;
+  --rf-blue:#0b2f5e;
+  --rf-red:#b3242f;
+  --gold:#a9832f;
+  --success:#276a4a;
+  --success-bg:#e3efe4;
+  --error:#a7382b;
+  --error-bg:#f7e7e0;
+  --muted:#767162;
+  --line:#ddd5bf;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(27,42,74,.06), 0 8px 24px rgba(27,42,74,.08);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    linear-gradient(180deg, var(--paper) 0%, var(--paper) 100%);
+  color:var(--ink);
+  font-family:'Inter',system-ui,sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+.tricolor{
+  height:6px;
+  width:100%;
+  background:linear-gradient(90deg, var(--rf-blue) 0 33.33%, #ffffff 33.33% 66.66%, var(--rf-red) 66.66% 100%);
+}
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:0 20px 80px;
+}
+header.masthead{
+  padding:38px 0 22px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:30px;
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--rf-blue);
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.eyebrow .seal{
+  width:22px;height:22px;border-radius:50%;
+  border:1.5px solid var(--gold);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:'Fraunces',serif;
+  font-size:10px;
+  font-weight:700;
+  color:var(--gold);
+  flex:none;
+}
+h1{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:clamp(28px,4.4vw,40px);
+  line-height:1.08;
+  margin:10px 0 8px;
+  letter-spacing:-0.01em;
+}
+h1 em{
+  font-style:italic;
+  font-weight:500;
+  color:var(--rf-red);
+}
+.subtitle{
+  color:var(--ink-soft);
+  font-size:15.5px;
+  line-height:1.55;
+  max-width:56ch;
+}
+.subtitle b{color:var(--ink);}
+
+/* ---- generic card ---- */
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:28px;
+}
+
+/* ---- setup screen ---- */
+.section-label{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 12px;
+}
+.choice-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(64px,1fr));
+  gap:8px;
+  margin-bottom:8px;
+}
+.chip{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:14px;
+  font-weight:600;
+  padding:11px 6px;
+  text-align:center;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--paper);
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:all .15s ease;
+  user-select:none;
+}
+.chip:hover{border-color:var(--rf-blue);color:var(--rf-blue);}
+.chip.active{
+  background:var(--rf-blue);
+  border-color:var(--rf-blue);
+  color:#fff;
+}
+.chip-all{
+  grid-column:1/-1;
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+}
+.mode-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-bottom:8px;
+}
+@media (max-width:560px){ .mode-grid{grid-template-columns:1fr;} }
+.situation-tag{display:inline-block;margin-bottom:10px;background:#0b2f5e;color:#fff;}
+.proc-grid{grid-template-columns:1fr 1fr 1fr;}
+@media (max-width:760px){ .proc-grid{grid-template-columns:1fr;} }
+.mode-card{
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  padding:16px 16px 15px;
+  cursor:pointer;
+  background:var(--paper);
+  transition:all .15s ease;
+}
+.mode-card:hover{border-color:var(--rf-blue);}
+.mode-card.active{
+  border-color:var(--rf-blue);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(11,47,94,.08);
+}
+.mode-card .mtitle{
+  font-weight:700;
+  font-size:14.5px;
+  margin-bottom:4px;
+  color:var(--ink);
+  display:flex;align-items:center;gap:8px;
+}
+.mode-card .mdesc{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.4;
+}
+.radio-dot{
+  width:16px;height:16px;border-radius:50%;
+  border:1.5px solid var(--line);
+  flex:none;
+  position:relative;
+}
+.mode-card.active .radio-dot{border-color:var(--rf-blue);}
+.mode-card.active .radio-dot::after{
+  content:'';
+  position:absolute;inset:3px;
+  border-radius:50%;
+  background:var(--rf-blue);
+}
+.field-block{margin-bottom:26px;}
+.field-block:last-of-type{margin-bottom:20px;}
+.proc-note{
+  margin:12px 2px 0;
+  font-size:12.5px;
+  line-height:1.5;
+  color:var(--muted);
+  font-style:italic;
+}
+
+.btn{
+  font-family:'Inter',sans-serif;
+  font-weight:700;
+  font-size:15px;
+  padding:14px 22px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  transition:transform .12s ease, box-shadow .12s ease, background .15s ease;
+}
+.btn-primary{
+  background:var(--rf-blue);
+  color:#fff;
+  width:100%;
+}
+.btn-primary:hover{background:#0e3a72;}
+.btn-primary:active{transform:scale(.99);}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;}
+.btn-ghost{
+  background:transparent;
+  color:var(--rf-blue);
+  border:1.5px solid var(--rf-blue);
+}
+.btn-ghost:hover{background:rgba(11,47,94,.06);}
+
+/* ---- quiz screen ---- */
+.progress-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;
+  color:var(--muted);
+}
+.theme-tag{
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:11.5px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:var(--paper-alt);
+  color:var(--ink-soft);
+}
+.progress-bar{
+  height:5px;
+  background:var(--paper-alt);
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:14px;
+}
+.quiz-stop-link{
+  display:block;
+  margin:0 0 22px auto;
+  background:transparent;
+  border:none;
+  padding:0;
+  font-family:'Inter',sans-serif;
+  font-size:12.5px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+  text-decoration:underline;
+  text-decoration-color:rgba(118,113,98,.35);
+}
+.quiz-stop-link:hover{color:var(--error);text-decoration-color:rgba(167,56,43,.5);}
+
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(27,42,74,.45);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  z-index:50;
+}
+.modal-card{
+  background:var(--card);
+  border-radius:var(--radius);
+  box-shadow:0 20px 60px rgba(27,42,74,.3);
+  padding:28px;
+  max-width:420px;
+  width:100%;
+}
+.modal-title{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:20px;
+  color:var(--ink);
+  margin:0 0 10px;
+}
+.modal-text{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--ink-soft);
+  margin:0 0 22px;
+}
+.modal-actions{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.modal-actions .btn{width:100%;}
+.modal-resume{
+  background:transparent;
+  border:none;
+  color:var(--muted);
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:13.5px;
+  cursor:pointer;
+  padding:6px;
+  text-decoration:underline;
+  text-decoration-color:rgba(118,113,98,.35);
+}
+.modal-resume:hover{color:var(--ink);}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--rf-blue),var(--rf-red));
+  border-radius:999px;
+  transition:width .3s ease;
+}
+.question-text{
+  font-family:'Fraunces',serif;
+  font-size:clamp(19px,2.6vw,23px);
+  font-weight:600;
+  line-height:1.35;
+  margin:0 0 22px;
+}
+.options{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.option{
+  text-align:left;
+  padding:14px 16px;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  background:var(--paper);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  color:var(--ink);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  transition:all .12s ease;
+}
+.option:hover:not(.locked){border-color:var(--rf-blue);background:#fff;}
+.option .letter{
+  font-family:'IBM Plex Mono',monospace;
+  font-weight:600;
+  font-size:12.5px;
+  width:24px;height:24px;
+  border-radius:50%;
+  border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  flex:none;
+  color:var(--muted);
+}
+.option.selected-neutral{
+  border-color:var(--rf-blue);
+  background:#fff;
+  box-shadow:0 0 0 3px rgba(11,47,94,.08);
+}
+.option.selected-neutral .letter{border-color:var(--rf-blue);color:var(--rf-blue);}
+.option.correct{
+  border-color:var(--success);
+  background:var(--success-bg);
+}
+.option.correct .letter{border-color:var(--success);background:var(--success);color:#fff;}
+.option.incorrect{
+  border-color:var(--error);
+  background:var(--error-bg);
+}
+.option.incorrect .letter{border-color:var(--error);background:var(--error);color:#fff;}
+.option.locked{cursor:default;}
+.option.dim{opacity:.55;}
+
+.feedback{
+  margin-top:20px;
+  padding:18px 18px 16px;
+  border-radius:12px;
+  border:1.5px solid var(--line);
+  animation:stampIn .22s ease;
+}
+@keyframes stampIn{
+  from{opacity:0; transform:scale(.96) rotate(-1deg);}
+  to{opacity:1; transform:scale(1) rotate(0);}
+}
+.feedback.good{border-color:var(--success); background:var(--success-bg);}
+.feedback.bad{border-color:var(--error); background:var(--error-bg);}
+.feedback-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:16.5px;
+  margin-bottom:8px;
+}
+.feedback.good .feedback-head{color:var(--success);}
+.feedback.bad .feedback-head{color:var(--error);}
+.stamp{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border:1.5px solid currentColor;
+  border-radius:5px;
+  padding:2px 8px;
+  transform:rotate(-3deg);
+  flex:none;
+}
+.feedback-body{
+  font-size:14.5px;
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.feedback-source{
+  margin-top:10px;
+  font-size:12.5px;
+}
+.feedback-source a{
+  color:var(--rf-blue);
+  text-decoration:underline;
+  text-decoration-color:rgba(11,47,94,.35);
+  word-break:break-word;
+}
+.note-registered{
+  margin-top:16px;
+  font-size:13px;
+  color:var(--muted);
+  font-style:italic;
+}
+
+.quiz-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:22px;
+  flex-wrap:wrap;
+}
+.quiz-footer .btn{width:auto;}
+.footer-right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin-left:auto;
+}
+.btn-ghost:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+  background:transparent;
+}
+.btn-ghost:disabled:hover{background:transparent;}
+
+/* ---- results screen ---- */
+.score-hero{
+  text-align:center;
+  padding:38px 20px 30px;
+}
+.score-big{
+  font-family:'Fraunces',serif;
+  font-weight:700;
+  font-size:clamp(46px,10vw,66px);
+  line-height:1;
+  color:var(--rf-blue);
+  margin-bottom:6px;
+}
+.score-sub{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:13px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.global-verdict{
+  display:inline-block;
+  margin-top:16px;
+  padding:6px 16px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:13.5px;
+  transform:rotate(-1.5deg);
+  border:1.5px solid currentColor;
+}
+.theme-block{
+  margin-bottom:18px;
+  padding-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.theme-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.theme-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:8px;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.theme-name{
+  font-weight:700;
+  font-size:15px;
+}
+.theme-level{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11.5px;
+  font-weight:600;
+  padding:3px 10px;
+  border-radius:999px;
+  white-space:nowrap;
+}
+.lvl-maitrise{background:var(--success-bg); color:var(--success);}
+.lvl-bon{background:#eef4e2; color:#4c7325;}
+.lvl-fragile{background:#fbf1de; color:#93650f;}
+.lvl-lacune{background:var(--error-bg); color:var(--error);}
+.theme-bar-track{
+  height:9px;
+  border-radius:999px;
+  background:var(--paper-alt);
+  overflow:hidden;
+  display:flex;
+}
+.theme-bar-good{background:var(--success); height:100%;}
+.theme-bar-bad{background:var(--error); height:100%;}
+.theme-stats{
+  margin-top:6px;
+  font-size:12.5px;
+  color:var(--muted);
+  font-family:'IBM Plex Mono',monospace;
+}
+.review-toggle{
+  margin-top:26px;
+  background:transparent;
+  border:none;
+  color:var(--rf-blue);
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  padding:0;
+  text-decoration:underline;
+  text-decoration-color:rgba(11,47,94,.35);
+}
+.review-filters{
+  display:none;
+  gap:8px;
+  margin-top:16px;
+  flex-wrap:wrap;
+}
+.review-filters.open{display:flex;}
+.filter-chip{
+  font-family:'Inter',sans-serif;
+  font-weight:600;
+  font-size:12.5px;
+  padding:7px 14px;
+  border-radius:999px;
+  border:1.5px solid var(--line);
+  background:var(--paper);
+  color:var(--ink-soft);
+  cursor:pointer;
+  transition:all .12s ease;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.filter-chip .count{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;
+  opacity:.75;
+}
+.filter-chip:hover{border-color:var(--rf-blue);}
+.filter-chip.active{
+  background:var(--rf-blue);
+  border-color:var(--rf-blue);
+  color:#fff;
+}
+.filter-chip.active.f-bad{background:var(--error); border-color:var(--error);}
+.filter-chip.active.f-good{background:var(--success); border-color:var(--success);}
+.review-empty{
+  display:none;
+  margin-top:16px;
+  padding:16px;
+  border:1.5px dashed var(--line);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:13.5px;
+  text-align:center;
+}
+.review-list{
+  margin-top:16px;
+  display:none;
+  flex-direction:column;
+  gap:12px;
+}
+.review-list.open{display:flex;}
+.review-item.filtered-out{display:none;}
+.review-item{
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  padding:14px 16px;
+}
+.review-item .rq{
+  font-weight:700;
+  font-size:14px;
+  margin-bottom:6px;
+}
+.review-item .ra{
+  font-size:13.5px;
+  color:var(--ink-soft);
+  line-height:1.5;
+}
+.review-item .ra b{color:var(--success);}
+.review-item .rsrc{
+  margin-top:6px;
+  font-size:12px;
+}
+.review-item .rsrc a{color:var(--rf-blue);}
+.results-actions{
+  display:flex;
+  gap:10px;
+  margin-top:28px;
+}
+@media (max-width:560px){ .results-actions{flex-direction:column;} }
+
+.hidden{display:none !important;}
+footer.foot{
+  text-align:center;
+  margin-top:34px;
+  font-size:12px;
+  color:var(--muted);
+  font-family:'IBM Plex Mono',monospace;
+}
+
+.proc-grid{grid-template-columns:1fr 1fr 1fr;}
+@media (max-width:760px){ .proc-grid{grid-template-columns:1fr;} }
+
+</style>
+</head>
+<body>
+<div class="tricolor"></div>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow"><span class="seal">EC</span> Préparation à l'examen civique</div>
+    <h1>Quizz avec mise en situation : <em id="procedure-title">carte de résident</em></h1>
+    <p class="subtitle">Plus de 390 questions officielles du <b>ministère de l'Intérieur</b>, complétées de <b>50 questions de mise en situation</b> (à l'examen réel : 40 questions dont 12 mises en situation). Choisissez votre démarche et votre format de session ci-dessous.</p>
+  </header>
+
+  <!-- SETUP SCREEN -->
+  <main id="screen-setup" class="card">
+    <div class="field-block">
+      <p class="section-label">Démarche concernée</p>
+      <div class="mode-grid proc-grid">
+        <div class="mode-card active" id="proc-cr" data-proc="cr">
+          <div class="mtitle"><span class="radio-dot"></span>Carte de résident</div>
+          <div class="mdesc">Examen civique pour la demande de carte de résident (CR).</div>
+        </div>
+        <div class="mode-card" id="proc-csp" data-proc="csp">
+          <div class="mtitle"><span class="radio-dot"></span>Carte de séjour pluriannuelle</div>
+          <div class="mdesc">Examen civique pour la demande de carte de séjour pluriannuelle (CSP).</div>
+        </div>
+        <div class="mode-card" id="proc-nat" data-proc="nat">
+          <div class="mtitle"><span class="radio-dot"></span>Naturalisation</div>
+          <div class="mdesc">Examen civique pour la naturalisation ou la réintégration dans la nationalité française.</div>
+        </div>
+      </div>
+      <p id="proc-note" class="proc-note">Les questions officielles CR et CSP sont identiques : cette banque couvre les deux démarches.</p>
+    </div>
+
+    <div class="field-block">
+      <p class="section-label">Type de session</p>
+      <div class="mode-grid">
+        <div class="mode-card active" id="exam-off" data-exam="off">
+          <div class="mtitle"><span class="radio-dot"></span>Entraînement</div>
+          <div class="mdesc">Vous choisissez le nombre de questions ; connaissances et mises en situation sont mélangées.</div>
+        </div>
+        <div class="mode-card" id="exam-on" data-exam="on">
+          <div class="mtitle"><span class="radio-dot"></span>Examen blanc</div>
+          <div class="mdesc">40 questions dont 12 mises en situation, tirées au hasard comme à l'examen.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field-block" id="qty-block">
+      <p class="section-label">Nombre de questions</p>
+      <div id="qty-grid" class="choice-grid"></div>
+    </div>
+
+    <div class="field-block">
+      <p class="section-label">Mode de correction</p>
+      <div class="mode-grid">
+        <div class="mode-card active" id="mode-instant" data-mode="instant">
+          <div class="mtitle"><span class="radio-dot"></span>Correction immédiate</div>
+          <div class="mdesc">La bonne/mauvaise réponse et l'explication s'affichent dès que vous répondez.</div>
+        </div>
+        <div class="mode-card" id="mode-final" data-mode="final">
+          <div class="mtitle"><span class="radio-dot"></span>Résultat final</div>
+          <div class="mdesc">Aucune correction pendant le quiz ; le bilan complet par thématique arrive à la fin.</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="start-btn">Commencer le quiz</button>
+  </main>
+
+  <!-- QUIZ SCREEN -->
+  <main id="screen-quiz" class="card hidden">
+    <div class="progress-row">
+      <span id="progress-label">Question 1 / 10</span>
+      <span class="theme-tag" id="progress-theme">Thème</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <button class="quiz-stop-link" id="stop-quiz-btn">Arrêter le quiz</button>
+
+    <span class="theme-tag situation-tag hidden" id="situation-tag">Mise en situation</span>
+    <p class="question-text" id="question-text"></p>
+    <div class="options" id="options-container"></div>
+
+    <div id="feedback-area"></div>
+
+    <div class="quiz-footer">
+      <button class="btn btn-ghost" id="prev-btn" disabled>← Précédente</button>
+      <div class="footer-right">
+        <button class="btn btn-ghost hidden" id="change-btn">Modifier ma réponse</button>
+        <button class="btn btn-primary" id="next-btn" disabled>Suivante</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- STOP QUIZ MODAL -->
+  <div class="modal-overlay hidden" id="stop-modal-overlay">
+    <div class="modal-card">
+      <p class="modal-title">Arrêter le quiz ?</p>
+      <p class="modal-text">Vous avez répondu à <b id="stop-modal-count">0</b> question(s) sur <span id="stop-modal-total">0</span>. Souhaitez-vous afficher votre résultat final dès maintenant, sur la base de ces réponses ?</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="stop-modal-results">Oui, voir mon résultat</button>
+        <button class="btn btn-ghost" id="stop-modal-exit">Non, quitter sans résultat</button>
+        <button class="modal-resume" id="stop-modal-resume">Continuer le quiz</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <main id="screen-results" class="card hidden">
+    <div class="score-hero">
+      <p class="theme-tag" id="result-procedure" style="display:inline-block;margin-bottom:14px;">Carte de résident (CR)</p>
+      <div class="score-big" id="score-big">0%</div>
+      <div class="score-sub" id="score-sub">0 / 0 bonnes réponses</div>
+      <div class="global-verdict" id="global-verdict">Niveau</div>
+    </div>
+
+    <div id="theme-breakdown"></div>
+
+    <button class="review-toggle" id="review-toggle">Revoir le détail des questions ↓</button>
+    <div class="review-filters" id="review-filters">
+      <button class="filter-chip active" data-filter="all">Toutes <span class="count" id="count-all"></span></button>
+      <button class="filter-chip f-good" data-filter="good">Bonnes réponses <span class="count" id="count-good"></span></button>
+      <button class="filter-chip f-bad" data-filter="bad">Mauvaises réponses <span class="count" id="count-bad"></span></button>
+    </div>
+    <div class="review-list" id="review-list"></div>
+    <div class="review-empty" id="review-empty">Aucune question dans cette catégorie.</div>
+
+    <div class="results-actions">
+      <button class="btn btn-ghost" id="download-pdf-btn">Télécharger mon résultat (PDF)</button>
+      <button class="btn btn-primary" id="restart-btn">Nouvelle session</button>
+    </div>
+  </main>
+
+  <footer class="foot">Outil de révision non officiel — vérifiez toujours les informations sur les sources citées.</footer>
+</div>
+
+<script src="vendor/jspdf.umd.min.js"></script>
+<script>
+let QUIZ_BANKS = { cr: [], csp: [], nat: [] };
+
+// La banque de questions est chargée depuis data/questions.json.
+// La bonne réponse est toujours options[0] ; les options sont mélangées à l'affichage.
+async function loadQuestionBank(){
+  const res = await fetch('data/questions.json', { cache: 'no-cache' });
+  if(!res.ok) throw new Error('HTTP ' + res.status);
+  const data = await res.json();
+  ['cr', 'csp', 'nat'].forEach(p => {
+    QUIZ_BANKS[p] = data.filter(q => q.procedures && q.procedures.includes(p));
+  });
+}
+
+function currentBank(){
+  return QUIZ_BANKS[state.procedure] || [];
+}
+
+const THEME_ORDER = [
+  "Principes et valeurs de la République",
+  "Droits et devoirs",
+  "Histoire, géographie et culture",
+  "Vivre dans la société française"
+];
+
+let state = {
+  procedure: 'cr',
+  qty: 10,
+  mode: 'instant',
+  exam: false,
+  questions: [],
+  index: 0,
+  answers: [], // {question, theme, correct, chosenText, correctText, explanation, source}
+  locked: false
+};
+let lastResults = null;
+
+// ---------- helpers ----------
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+
+function buildQtyChips(){
+  const grid = document.getElementById('qty-grid');
+  const total = currentBank().length;
+  const max10 = Math.floor(total/10)*10;
+  let html = '';
+  for(let n=10; n<=max10; n+=10){
+    html += `<div class="chip" data-qty="${n}">${n}</div>`;
+  }
+  html += `<div class="chip chip-all" data-qty="${total}">Toutes les questions (${total})</div>`;
+  grid.innerHTML = html;
+  grid.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click', ()=>{
+      grid.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      state.qty = parseInt(chip.dataset.qty,10);
+    });
+  });
+  // default select first
+  const first = grid.querySelector('.chip');
+  if(first){ first.classList.add('active'); state.qty = parseInt(first.dataset.qty,10); }
+}
+
+function bindExamCards(){
+  document.querySelectorAll('#exam-off, #exam-on').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('#exam-off, #exam-on').forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state.exam = card.dataset.exam === 'on';
+      document.getElementById('qty-block').classList.toggle('hidden', state.exam);
+    });
+  });
+}
+
+function bindModeCards(){
+  document.querySelectorAll('#mode-instant, #mode-final').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('#mode-instant, #mode-final').forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state.mode = card.dataset.mode;
+    });
+  });
+}
+
+const PROCEDURE_LABELS = {
+  cr: { title:'carte de résident', short:'Carte de résident (CR)' },
+  csp: { title:'carte de séjour pluriannuelle', short:'Carte de séjour pluriannuelle (CSP)' },
+  nat: { title:'naturalisation française', short:'Naturalisation ou réintégration dans la nationalité française' }
+};
+
+const PROC_NOTES = {
+  cr: "Les questions officielles CR et CSP sont identiques : cette banque couvre les deux démarches.",
+  csp: "Les questions officielles CR et CSP sont identiques : cette banque couvre les deux démarches.",
+  nat: "La banque de questions de la naturalisation est plus large et comporte de nombreuses questions spécifiques, en plus de celles communes aux autres démarches."
+};
+
+function bindProcedureCards(){
+  document.querySelectorAll('#proc-cr, #proc-csp, #proc-nat').forEach(card=>{
+    card.addEventListener('click', ()=>{
+      document.querySelectorAll('#proc-cr, #proc-csp, #proc-nat').forEach(c=>c.classList.remove('active'));
+      card.classList.add('active');
+      state.procedure = card.dataset.proc;
+      document.getElementById('procedure-title').textContent = PROCEDURE_LABELS[state.procedure].title;
+      const noteEl = document.getElementById('proc-note');
+      if(noteEl) noteEl.textContent = PROC_NOTES[state.procedure];
+      buildQtyChips();
+    });
+  });
+}
+
+function pickPool(){
+  const bank = currentBank();
+  if(!state.exam) return shuffle(bank).slice(0, state.qty);
+  const sit = shuffle(bank.filter(q=>q.type==='situation')).slice(0,12);
+  const std = shuffle(bank.filter(q=>q.type!=='situation')).slice(0,28);
+  return shuffle(sit.concat(std));
+}
+
+function startQuiz(){
+  const pool = pickPool();
+  state.questions = pool.map(q=>{
+    const optionObjs = q.options.map((text,i)=>({text, correct:i===0}));
+    return {
+      id:q.id, type:q.type||'standard', theme:q.theme, question:q.question,
+      explanation:q.explanation, source:q.source,
+      options: shuffle(optionObjs)
+    };
+  });
+  state.index = 0;
+  state.answers = new Array(state.questions.length).fill(null);
+  document.getElementById('screen-setup').classList.add('hidden');
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.remove('hidden');
+  renderQuestion();
+}
+
+function renderQuestion(){
+  const total = state.questions.length;
+  const i = state.index;
+  const q = state.questions[i];
+  const existing = state.answers[i]; // previously recorded answer for this question, if any
+
+  document.getElementById('progress-label').textContent = `Question ${i+1} / ${total}`;
+  document.getElementById('progress-theme').textContent = q.theme;
+  document.getElementById('progress-fill').style.width = ((i)/total*100)+'%';
+  document.getElementById('question-text').textContent = q.question;
+  document.getElementById('situation-tag').classList.toggle('hidden', q.type!=='situation');
+
+  const letters = ['A','B','C','D','E'];
+  const container = document.getElementById('options-container');
+  container.innerHTML = '';
+  q.options.forEach((opt, idx)=>{
+    const btn = document.createElement('button');
+    btn.className = 'option';
+    btn.innerHTML = `<span class="letter">${letters[idx]}</span><span>${opt.text}</span>`;
+    btn.addEventListener('click', ()=> selectOption(idx));
+    container.appendChild(btn);
+  });
+
+  const nextBtn = document.getElementById('next-btn');
+  const prevBtn = document.getElementById('prev-btn');
+  const changeBtn = document.getElementById('change-btn');
+  nextBtn.textContent = (i === total-1) ? 'Voir mes résultats' : 'Suivante';
+  prevBtn.disabled = (i === 0);
+
+  if(existing){
+    // restore previously answered state for this question
+    state.locked = true;
+    const optionButtons = container.querySelectorAll('.option');
+    optionButtons.forEach((btn, bi)=>{
+      btn.classList.add('locked');
+      if(state.mode === 'instant'){
+        if(q.options[bi].correct) btn.classList.add('correct');
+        if(bi===existing.selectedIdx && !existing.correct) btn.classList.add('incorrect');
+        if(bi!==existing.selectedIdx && !q.options[bi].correct) btn.classList.add('dim');
+      } else {
+        if(bi===existing.selectedIdx) btn.classList.add('selected-neutral');
+        else btn.classList.add('dim');
+      }
+    });
+    renderFeedback(q, existing.correct, existing.correctText);
+    nextBtn.disabled = false;
+    changeBtn.classList.remove('hidden');
+  } else {
+    state.locked = false;
+    document.getElementById('feedback-area').innerHTML = '';
+    nextBtn.disabled = true;
+    changeBtn.classList.add('hidden');
+  }
+}
+
+function renderFeedback(q, isCorrect, correctText){
+  const feedbackArea = document.getElementById('feedback-area');
+  if(state.mode === 'instant'){
+    feedbackArea.innerHTML = `
+      <div class="feedback ${isCorrect?'good':'bad'}">
+        <div class="feedback-head">
+          <span class="stamp">${isCorrect?'Correct':'Incorrect'}</span>
+          ${isCorrect ? 'Bonne réponse' : "Ce n'est pas la bonne réponse"}
+        </div>
+        <div class="feedback-body">
+          ${!isCorrect ? `<p style="margin:0 0 8px;"><b>Réponse correcte :</b> ${correctText}</p>` : ''}
+          <p style="margin:0;">${q.explanation}</p>
+        </div>
+        ${q.source ? `<div class="feedback-source">Source : <a href="${sourceUrl(q.source)}" target="_blank" rel="noopener">${q.source}</a></div>` : ''}
+      </div>
+    `;
+  } else {
+    feedbackArea.innerHTML = `<p class="note-registered">Réponse enregistrée. La correction et les explications seront disponibles dans le bilan final.</p>`;
+  }
+}
+
+function selectOption(idx){
+  if(state.locked) return;
+  state.locked = true;
+  const i = state.index;
+  const q = state.questions[i];
+  const chosen = q.options[idx];
+  const correctOpt = q.options.find(o=>o.correct);
+  const isCorrect = !!chosen.correct;
+
+  const optionButtons = document.querySelectorAll('#options-container .option');
+  optionButtons.forEach((btn, bi)=>{
+    btn.classList.add('locked');
+    if(state.mode === 'instant'){
+      if(q.options[bi].correct) btn.classList.add('correct');
+      if(bi===idx && !isCorrect) btn.classList.add('incorrect');
+      if(bi!==idx && !q.options[bi].correct) btn.classList.add('dim');
+    } else {
+      if(bi===idx) btn.classList.add('selected-neutral');
+      else btn.classList.add('dim');
+    }
+  });
+
+  renderFeedback(q, isCorrect, correctOpt.text);
+
+  state.answers[i] = {
+    theme:q.theme,
+    question:q.question,
+    selectedIdx:idx,
+    correct:isCorrect,
+    chosenText:chosen.text,
+    correctText:correctOpt.text,
+    explanation:q.explanation,
+    source:q.source
+  };
+
+  document.getElementById('next-btn').disabled = false;
+  document.getElementById('change-btn').classList.remove('hidden');
+}
+
+document.getElementById('change-btn').addEventListener('click', ()=>{
+  // Clear the recorded answer for the current question and unlock options
+  state.answers[state.index] = null;
+  state.locked = false;
+  const optionButtons = document.querySelectorAll('#options-container .option');
+  optionButtons.forEach(btn=>{
+    btn.classList.remove('locked','correct','incorrect','selected-neutral','dim');
+  });
+  document.getElementById('feedback-area').innerHTML = '';
+  document.getElementById('next-btn').disabled = true;
+  document.getElementById('change-btn').classList.add('hidden');
+});
+
+document.getElementById('prev-btn').addEventListener('click', ()=>{
+  if(state.index > 0){
+    state.index--;
+    renderQuestion();
+  }
+});
+
+// ---------- stop quiz modal ----------
+document.getElementById('stop-quiz-btn').addEventListener('click', ()=>{
+  const answeredCount = state.answers.filter(a=>a!==null).length;
+  document.getElementById('stop-modal-count').textContent = answeredCount;
+  document.getElementById('stop-modal-total').textContent = state.questions.length;
+  document.getElementById('stop-modal-overlay').classList.remove('hidden');
+});
+
+document.getElementById('stop-modal-overlay').addEventListener('click', (e)=>{
+  if(e.target.id === 'stop-modal-overlay'){
+    document.getElementById('stop-modal-overlay').classList.add('hidden');
+  }
+});
+
+document.getElementById('stop-modal-resume').addEventListener('click', ()=>{
+  document.getElementById('stop-modal-overlay').classList.add('hidden');
+});
+
+document.getElementById('stop-modal-results').addEventListener('click', ()=>{
+  document.getElementById('stop-modal-overlay').classList.add('hidden');
+  showResults();
+});
+
+document.getElementById('stop-modal-exit').addEventListener('click', ()=>{
+  document.getElementById('stop-modal-overlay').classList.add('hidden');
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-setup').classList.remove('hidden');
+});
+
+function sourceUrl(s){
+  // extract first URL-looking token
+  const m = s.match(/https?:\/\/[^\s)]+/);
+  return m ? m[0] : '#';
+}
+
+document.getElementById('next-btn').addEventListener('click', ()=>{
+  if(state.index < state.questions.length-1){
+    state.index++;
+    renderQuestion();
+  } else {
+    showResults();
+  }
+});
+
+function levelFor(pct){
+  if(pct>=85) return {label:'Maîtrisé', cls:'lvl-maitrise'};
+  if(pct>=70) return {label:'Bon niveau', cls:'lvl-bon'};
+  if(pct>=50) return {label:'Fragile', cls:'lvl-fragile'};
+  return {label:'Lacune importante', cls:'lvl-lacune'};
+}
+
+function showResults(){
+  document.getElementById('screen-quiz').classList.add('hidden');
+  document.getElementById('screen-results').classList.remove('hidden');
+  document.getElementById('result-procedure').textContent = PROCEDURE_LABELS[state.procedure].short;
+
+  const answeredList = state.answers.filter(a=>a!==null);
+  const total = answeredList.length;
+  const correctCount = answeredList.filter(a=>a.correct).length;
+  const pct = total ? Math.round(correctCount/total*100) : 0;
+
+  document.getElementById('score-big').textContent = `${correctCount} / ${total}`;
+  document.getElementById('score-sub').textContent = `${pct}% de bonnes réponses`;
+
+  const globalVerdict = document.getElementById('global-verdict');
+  const lvl = levelFor(pct);
+  globalVerdict.textContent = lvl.label;
+  globalVerdict.className = 'global-verdict theme-level '+lvl.cls;
+  globalVerdict.style.color = getComputedStyleColor(lvl.cls);
+
+  // theme breakdown
+  const byTheme = {};
+  THEME_ORDER.forEach(t=> byTheme[t] = {correct:0, total:0});
+  answeredList.forEach(a=>{
+    if(!byTheme[a.theme]) byTheme[a.theme] = {correct:0,total:0};
+    byTheme[a.theme].total++;
+    if(a.correct) byTheme[a.theme].correct++;
+  });
+
+  const breakdownEl = document.getElementById('theme-breakdown');
+  let html = '';
+  THEME_ORDER.forEach(theme=>{
+    const d = byTheme[theme];
+    if(!d || d.total===0) return;
+    const tPct = Math.round(d.correct/d.total*100);
+    const tLvl = levelFor(tPct);
+    html += `
+      <div class="theme-block">
+        <div class="theme-row">
+          <span class="theme-name">${theme}</span>
+          <span class="theme-level ${tLvl.cls}">${tLvl.label}</span>
+        </div>
+        <div class="theme-bar-track">
+          <div class="theme-bar-good" style="width:${tPct}%"></div>
+          <div class="theme-bar-bad" style="width:${100-tPct}%"></div>
+        </div>
+        <div class="theme-stats">${d.correct}/${d.total} bonnes réponses — ${tPct}% réussite, ${100-tPct}% à revoir</div>
+      </div>
+    `;
+  });
+  breakdownEl.innerHTML = html;
+
+  // store for PDF export
+  lastResults = { total, correctCount, pct, globalLevel: lvl.label, byTheme, procedure: PROCEDURE_LABELS[state.procedure].short };
+
+  // review list
+  const reviewList = document.getElementById('review-list');
+  reviewList.innerHTML = answeredList.map(a=>`
+    <div class="review-item" data-correct="${a.correct ? 'good' : 'bad'}">
+      <div class="rq">${a.correct ? '✓' : '✗'} ${a.question}</div>
+      <div class="ra">${!a.correct ? `Votre réponse : ${a.chosenText}<br>` : ''}<b>Réponse correcte : ${a.correctText}</b><br>${a.explanation}</div>
+      ${a.source ? `<div class="rsrc">Source : <a href="${sourceUrl(a.source)}" target="_blank" rel="noopener">${a.source}</a></div>` : ''}
+    </div>
+  `).join('');
+
+  const goodCount = answeredList.filter(a=>a.correct).length;
+  const badCount = answeredList.length - goodCount;
+  document.getElementById('count-all').textContent = answeredList.length;
+  document.getElementById('count-good').textContent = goodCount;
+  document.getElementById('count-bad').textContent = badCount;
+
+  applyReviewFilter('all');
+  document.querySelectorAll('#review-filters .filter-chip').forEach(chip=>{
+    chip.classList.toggle('active', chip.dataset.filter==='all');
+  });
+}
+
+function applyReviewFilter(filter){
+  const items = document.querySelectorAll('#review-list .review-item');
+  let visibleCount = 0;
+  items.forEach(item=>{
+    const show = (filter==='all') || (item.dataset.correct===filter);
+    item.classList.toggle('filtered-out', !show);
+    if(show) visibleCount++;
+  });
+  document.getElementById('review-empty').style.display = visibleCount===0 ? 'block' : 'none';
+}
+
+document.querySelectorAll('#review-filters .filter-chip').forEach(chip=>{
+  chip.addEventListener('click', ()=>{
+    document.querySelectorAll('#review-filters .filter-chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    applyReviewFilter(chip.dataset.filter);
+  });
+});
+
+function getComputedStyleColor(cls){
+  const map = {
+    'lvl-maitrise': getCssVar('--success'),
+    'lvl-bon': '#4c7325',
+    'lvl-fragile': '#93650f',
+    'lvl-lacune': getCssVar('--error')
+  };
+  return map[cls] || '';
+}
+function getCssVar(name){
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+document.getElementById('review-toggle').addEventListener('click', function(){
+  const list = document.getElementById('review-list');
+  const filters = document.getElementById('review-filters');
+  const isOpen = list.classList.toggle('open');
+  filters.classList.toggle('open', isOpen);
+  if(!isOpen){ document.getElementById('review-empty').style.display = 'none'; }
+  else { applyReviewFilter(document.querySelector('#review-filters .filter-chip.active').dataset.filter); }
+  this.textContent = isOpen ? 'Masquer le détail des questions ↑' : 'Revoir le détail des questions ↓';
+});
+
+document.getElementById('start-btn').addEventListener('click', startQuiz);
+document.getElementById('restart-btn').addEventListener('click', ()=>{
+  document.getElementById('screen-results').classList.add('hidden');
+  document.getElementById('screen-setup').classList.remove('hidden');
+});
+
+document.getElementById('download-pdf-btn').addEventListener('click', downloadResultsPDF);
+
+function downloadResultsPDF(){
+  if(!lastResults || !window.jspdf) return;
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit:'mm', format:'a4' });
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const marginX = 18;
+  let y = 20;
+
+  // tricolor header bar
+  doc.setFillColor(11,47,94);
+  doc.rect(0,0,pageWidth/3,4,'F');
+  doc.setFillColor(255,255,255);
+  doc.rect(pageWidth/3,0,pageWidth/3,4,'F');
+  doc.setFillColor(179,36,47);
+  doc.rect((pageWidth/3)*2,0,pageWidth/3,4,'F');
+
+  doc.setTextColor(11,47,94);
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(9);
+  doc.text('PRÉPARATION À L\'EXAMEN CIVIQUE', marginX, y);
+  y += 9;
+
+  doc.setFontSize(19);
+  doc.text('Résultat du quiz', marginX, y);
+  y += 8;
+
+  doc.setFont('helvetica','normal');
+  doc.setFontSize(11);
+  doc.setTextColor(60,74,104);
+  doc.text('Démarche concernée : ' + lastResults.procedure, marginX, y);
+  y += 6;
+  const today = new Date();
+  const dateStr = today.toLocaleDateString('fr-FR', { day:'2-digit', month:'long', year:'numeric' });
+  doc.text('Date de la session : ' + dateStr, marginX, y);
+  y += 12;
+
+  // score block
+  doc.setDrawColor(221,213,191);
+  doc.setLineWidth(0.3);
+  doc.line(marginX, y, pageWidth-marginX, y);
+  y += 10;
+
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(28);
+  doc.setTextColor(11,47,94);
+  doc.text(lastResults.correctCount + ' / ' + lastResults.total, marginX, y);
+
+  doc.setFontSize(11);
+  doc.setTextColor(118,113,98);
+  doc.setFont('helvetica','normal');
+  doc.text(lastResults.pct + '% de bonnes réponses', marginX, y + 7);
+
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(12);
+  doc.setTextColor(167,56,43);
+  doc.text('Niveau global : ' + lastResults.globalLevel, marginX, y + 16);
+  y += 26;
+
+  doc.line(marginX, y, pageWidth-marginX, y);
+  y += 10;
+
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(13);
+  doc.setTextColor(27,42,74);
+  doc.text('Détail par thématique', marginX, y);
+  y += 9;
+
+  THEME_ORDER.forEach(theme=>{
+    const d = lastResults.byTheme[theme];
+    if(!d || d.total===0) return;
+    const tPct = Math.round(d.correct/d.total*100);
+    const tLvl = levelFor(tPct);
+
+    if(y > 265){ doc.addPage(); y = 20; }
+
+    doc.setFont('helvetica','bold');
+    doc.setFontSize(11.5);
+    doc.setTextColor(27,42,74);
+    doc.text(theme, marginX, y);
+
+    doc.setFont('helvetica','normal');
+    doc.setFontSize(10);
+    doc.setTextColor(118,113,98);
+    doc.text(tLvl.label, pageWidth-marginX, y, { align:'right' });
+    y += 5;
+
+    // progress bar
+    const barW = pageWidth - marginX*2;
+    doc.setFillColor(239,233,216);
+    doc.rect(marginX, y, barW, 3, 'F');
+    doc.setFillColor(39,106,74);
+    doc.rect(marginX, y, barW*(tPct/100), 3, 'F');
+    y += 6;
+
+    doc.setFontSize(9.5);
+    doc.setTextColor(118,113,98);
+    doc.text(d.correct + '/' + d.total + ' bonnes réponses — ' + tPct + '% réussite, ' + (100-tPct) + '% à revoir', marginX, y);
+    y += 11;
+  });
+
+  y += 2;
+  doc.setDrawColor(221,213,191);
+  doc.line(marginX, y, pageWidth-marginX, y);
+  y += 8;
+  doc.setFont('helvetica','italic');
+  doc.setFontSize(8.5);
+  doc.setTextColor(150,145,130);
+  const footNote = doc.splitTextToSize('Outil de révision non officiel. Vérifiez toujours les informations sur les sources officielles indiquées dans le quiz.', pageWidth - marginX*2);
+  doc.text(footNote, marginX, y);
+
+  const fileProcMap = { cr: 'carte-resident', csp: 'carte-sejour-pluriannuelle', nat: 'naturalisation' };
+  const fileProc = fileProcMap[state.procedure] || 'examen-civique';
+  const fileDate = today.toISOString().slice(0,10);
+  doc.save(`resultat-examen-civique-${fileProc}-${fileDate}.pdf`);
+}
+
+async function init(){
+  try{
+    await loadQuestionBank();
+  }catch(err){
+    const startBtn = document.getElementById('start-btn');
+    startBtn.disabled = true;
+    const msg = document.createElement('p');
+    msg.className = 'proc-note';
+    msg.textContent = "Impossible de charger les questions (" + err.message + "). Ouvrez la page via un serveur web (voir README), pas directement depuis le disque.";
+    startBtn.insertAdjacentElement('afterend', msg);
+    return;
+  }
+  buildQtyChips();
+  bindModeCards();
+  bindExamCards();
+  bindProcedureCards();
+}
+
+init();
+
+</script>
+</body>
+</html>
