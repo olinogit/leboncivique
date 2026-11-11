@@ -68,14 +68,6 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
   </head>
   <body>
     <a class="skip" href="#contenu">{t('Aller au contenu', 'Skip to content')}</a>
-    <div class="notice" role="note">
-      <div class="wrap">
-        {t(
-          'Site indépendant et non officiel. Il ne remplace pas les informations de l’administration.',
-          'Independent, unofficial website. It does not replace official government information.',
-        )}
-      </div>
-    </div>
     <header class="site-header">
       <div class="wrap">
         <a class="brand" href={ROUTES.home[lang]}>
@@ -113,7 +105,13 @@ const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
             'Le bon civique is an independent revision tool. It is not affiliated with or endorsed by the French Ministry of the Interior, OFII or France Éducation international. Always check the official sources we cite.',
           )}
         </p>
-        <p>© 2026 Le bon civique</p>
+        <div class="footer-bottom">
+          <p>© 2026 Le bon civique</p>
+          <a class="footer-contact" href="mailto:contact@leboncivique.fr">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span><span class="footer-contact-label">{t('Contact', 'Contact')}</span> contact@leboncivique.fr</span>
+          </a>
+        </div>
       </div>
     </footer>
     <script>
