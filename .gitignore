@@ -12,3 +12,5 @@ seed/
 questions*.json
 !src/data/exemples.json
 !.dev.vars.example
+# Paramètres locaux de mise en production
+scripts/deploy.config.env

@@ -39,6 +39,7 @@ src/data/exemples.json  ~10 questions publiques par thème (page « Questions d'
 worker/               API (index.ts), logique pure testée (quiz.ts, quiz.test.ts)
 migrations/           schéma D1
 scripts/build-seed.mjs  valide la banque et génère seed/questions.sql (non versionné)
+scripts/local-deploy.*, deploy-production.*  déploiement local et mise en production
 public/_headers       CSP, HSTS, Permissions-Policy, etc.
 ```
 
@@ -66,18 +67,12 @@ En local (`ENVIRONMENT=development`, sans `TURNSTILE_SECRET`), la vérification 
    - DNSSEC activé (et DS publié chez le registrar).
    - Bot Fight Mode activé.
    - Règle WAF de limitation de débit sur `/api/*` (par exemple 60 requêtes / 10 s par IP → blocage 10 min).
-3. **D1** (données en Europe) :
+3. **D1, secrets et déploiement** : créer un widget Turnstile « Managed » pour `leboncivique.fr`, puis lancer le script de mise en production, qui crée la base D1 en Europe, applique les migrations, charge la banque, crée les secrets et déploie le site. Procédure détaillée : [docs/production-deployment.md](docs/production-deployment.md).
    ```sh
-   npx wrangler d1 create leboncivique --location weur   # copier l'id dans wrangler.jsonc
-   npm run db:migrate:remote
-   npx wrangler d1 execute leboncivique --remote --file seed/questions.sql
+   cp scripts/deploy.config.example.env scripts/deploy.config.env   # renseigner la clé publique Turnstile
+   ./scripts/deploy-production.sh /chemin/privé/questions.json        # Windows : .\scripts\deploy-production.ps1 -Questions ...
    ```
-4. **Turnstile** : créer un widget « Managed » pour `leboncivique.fr`, puis :
-   ```sh
-   npx wrangler secret put TURNSTILE_SECRET
-   npx wrangler secret put IP_HASH_KEY        # 32 octets aléatoires : openssl rand -hex 32
-   PUBLIC_TURNSTILE_SITEKEY=<clé du site> npm run deploy
-   ```
+4. Committer `wrangler.jsonc` s'il a reçu l'identifiant de la base D1.
 5. **DNS** : enregistrements CAA (`0 issue "letsencrypt.org"`, `0 issue "pki.goog"`, `0 issue "digicert.com"` selon les autorités utilisées par Cloudflare, `0 iodef "mailto:securite@leboncivique.fr"`), et, même sans envoi de courriel : `TXT "v=spf1 -all"`, `_dmarc TXT "v=DMARC1; p=reject;"`.
 6. **Avant l'ouverture** : compléter les mentions légales (éditeur, directeur de publication), les adresses `contact@` et `securite@`, et le lien de dons ; lancer le workflow « DAST (OWASP ZAP baseline) » sur l'URL de production ; viser A+ sur Mozilla Observatory.
 
@@ -86,8 +81,7 @@ En local (`ENVIRONMENT=development`, sans `TURNSTILE_SECRET`), la vérification 
 La banque est gardée **hors du dépôt**. Modifier le fichier JSON privé, puis :
 
 ```sh
-npm run seed -- /chemin/privé/questions.json
-npx wrangler d1 execute leboncivique --remote --file seed/questions.sql
+./scripts/deploy-production.sh /chemin/privé/questions.json --seed-only
 ```
 
 Format : `options[0]` est la bonne réponse (le serveur mélange l'ordre à chaque partie), `type: "situation"` pour une mise en situation, `procedures` parmi `cr`, `csp`, `nat`, et `theme` parmi les 5 thèmes de l'arrêté du 10 octobre 2025.
