@@ -1,0 +1,122 @@
+---
+import '../styles/global.css';
+import { ROUTES, NAV, FOOTER, LABELS, type Lang, type PageKey } from '../i18n/routes';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  page: PageKey | null;
+  jsonld?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+const { title, description, lang, page, jsonld = [], noindex = false } = Astro.props;
+const site = Astro.site!.origin;
+const canonical = new URL(Astro.url.pathname, site).href;
+const alt = page ? ROUTES[page] : null;
+const other: Lang = lang === 'fr' ? 'en' : 'fr';
+const otherHref = alt?.[other] ?? ROUTES.home[other];
+const fullTitle = page === 'home' ? title : `${title} · Le bon civique`;
+const t = (fr: string, en: string) => (lang === 'fr' ? fr : en);
+const href = (k: PageKey) => ROUTES[k][lang] ?? ROUTES[k].fr;
+
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Le bon civique',
+  url: `${site}/`,
+  inLanguage: lang === 'fr' ? 'fr-FR' : 'en',
+};
+const crumbs =
+  page && page !== 'home'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: LABELS.home[lang], item: `${site}${ROUTES.home[lang]}` },
+          { '@type': 'ListItem', position: 2, name: title, item: canonical },
+        ],
+      }
+    : null;
+const ld = [org, ...(crumbs ? [crumbs] : []), ...jsonld];
+---
+<!doctype html>
+<html lang={lang === 'fr' ? 'fr' : 'en'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {alt?.fr && <link rel="alternate" hreflang="fr" href={`${site}${alt.fr}`} />}
+    {alt?.en && <link rel="alternate" hreflang="en" href={`${site}${alt.en}`} />}
+    {alt?.fr && <link rel="alternate" hreflang="x-default" href={`${site}${alt.fr}`} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#1f4e79" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Le bon civique" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'fr' ? 'fr_FR' : 'en_GB'} />
+    <meta property="og:image" content={`${site}/og.png`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    {ld.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip" href="#contenu">{t('Aller au contenu', 'Skip to content')}</a>
+    <div class="notice" role="note">
+      <div class="wrap">
+        {t(
+          'Site indépendant et non officiel. Il ne remplace pas les informations de l’administration.',
+          'Independent, unofficial website. It does not replace official government information.',
+        )}
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href={ROUTES.home[lang]}>
+          <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#1f4e79"/><path d="M9 16.5l4.5 4.5L23 11.5" fill="none" stroke="#f3c56b" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Le bon civique
+        </a>
+        <nav class="site-nav" aria-label={t('Navigation principale', 'Main navigation')}>
+          <ul>
+            {NAV.map((k) => (
+              <li><a href={href(k)} aria-current={k === page ? 'page' : undefined}>{LABELS[k][lang]}</a></li>
+            ))}
+            <li><a href={ROUTES.quiz[lang]!} aria-current={page === 'quiz' ? 'page' : undefined}><b>{LABELS.quiz[lang]}</b></a></li>
+          </ul>
+        </nav>
+        <div class="header-tools">
+          <a class="lang" href={otherHref} hreflang={other} lang={other}>{other === 'en' ? 'English' : 'Français'}</a>
+        </div>
+      </div>
+    </header>
+    <main id="contenu" tabindex="-1">
+      <div class="wrap">
+        <slot />
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <ul>
+          {FOOTER.map((k) => <li><a href={href(k)}>{LABELS[k][lang]}</a></li>)}
+          {lang === 'fr' && <li><a href={ROUTES.samples.fr}>{LABELS.samples.fr}</a></li>}
+          <li><button type="button" class="link-btn" id="dys-toggle" aria-pressed="false">{t('Police adaptée à la dyslexie', 'Dyslexia-friendly font')}</button></li>
+        </ul>
+        <p class="disclaimer">
+          {t(
+            'Le bon civique est un outil de révision indépendant. Il n’est ni affilié ni approuvé par le ministère de l’Intérieur, l’OFII ou France Éducation international. Vérifiez toujours les informations sur les sources officielles citées.',
+            'Le bon civique is an independent revision tool. It is not affiliated with or endorsed by the French Ministry of the Interior, OFII or France Éducation international. Always check the official sources we cite.',
+          )}
+        </p>
+        <p>© 2026 Le bon civique</p>
+      </div>
+    </footer>
+    <script>
+      import '../scripts/site';
+    </script>
+  </body>
+</html>

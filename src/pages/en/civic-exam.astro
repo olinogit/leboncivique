@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import Sources from '../../components/Sources.astro';
+import { ROUTES, UPDATED } from '../../i18n/routes';
+---
+<Base lang="en" page="exam" title="The French civic exam: format, topics and how it works"
+  description="French civic exam: 40 questions in 45 minutes, 32 correct answers to pass, 5 official topics and 12 real-life scenarios, as set by the order of 10 October 2025.">
+  <div class="prose">
+    <p class="eyebrow">Official format</p>
+    <h1>The French civic exam</h1>
+    <p class="lead">The civic exam checks that you know the principles and values of the French Republic, its institutions, your rights and duties, French history and everyday life in France.</p>
+    <p class="updated">Updated <time datetime={UPDATED}>11 November 2026</time></p>
+    <h2>At a glance</h2>
+    <ul>
+      <li><b>40 multiple-choice questions</b>, written in French, each with <b>one correct answer</b> out of 4.</li>
+      <li><b>28 knowledge questions</b> and <b>12 real-life scenarios</b> (<i lang="fr">mises en situation</i>).</li>
+      <li><b>45 minutes maximum</b>, on a computer or tablet, in an approved centre. Adjustments are available on medical grounds.</li>
+      <li>1 point per correct answer, 0 for a wrong or missing answer.</li>
+      <li><b>To pass: at least 32 correct answers out of 40</b> (80%).</li>
+    </ul>
+    <p>The syllabus and number of questions are the same for the multi-year residence permit, the resident card and naturalisation.</p>
+    <h2>The 5 topics</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Topic</th><th scope="col">Questions</th><th scope="col">Breakdown</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Principles and values of the Republic</th><td>11</td><td>motto and symbols (3), secularism (2), scenarios (6)</td></tr>
+          <tr><th scope="row">Institutions and political system</th><td>6</td><td>democracy and the right to vote (3), organisation of the Republic (2), European institutions (1)</td></tr>
+          <tr><th scope="row">Rights and duties</th><td>11</td><td>fundamental rights (2), obligations and duties (3), scenarios (6)</td></tr>
+          <tr><th scope="row">History, geography and culture</th><td>8</td><td>periods and figures (3), territories (3), heritage (2)</td></tr>
+          <tr><th scope="row">Living in French society</th><td>4</td><td>settling in (1), healthcare (1), work (1), parental authority and school (1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2>After the exam</h2>
+    <p>If you pass, you receive a certificate of success with no expiry date. You add it to your residence permit or citizenship application, so you must take the exam <b>before</b> applying.</p>
+    <div class="callout"><b>Fraud:</b> an exam involving fraud is cancelled, and the candidate cannot sit it again for two years.</div>
+    <p>Each centre sets its own price and session dates when you register. The texts we reviewed do not limit the number of attempts, except in cases of fraud.</p>
+    <div class="actions"><a class="btn" href={ROUTES.quiz.en}>Practise with a mock exam</a></div>
+    <Sources lang="en" keys={['arrete', 'spExamen', 'spActu', 'formation', 'fei']} />
+  </div>
+</Base>

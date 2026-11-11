@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import { ROUTES } from '../i18n/routes';
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000000AA';
+---
+<Base lang="fr" page="quiz" title="Quiz examen civique avec mises en situation"
+  description="Quiz gratuit pour préparer l'examen civique : séries de 10 à 40 questions ou examen blanc de 40 questions en 45 minutes, avec correction expliquée et mises en situation.">
+  <script slot="head" is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer></script>
+  <div class="quiz" id="quiz" data-sitekey={siteKey}>
+    <p class="eyebrow">Entraînement</p>
+    <h1>Quiz de l'examen civique</h1>
+    <p class="lead">Questions de connaissances et mises en situation, corrigées et expliquées. Gratuit et sans inscription.</p>
+    <noscript><p class="error">Le quiz a besoin de JavaScript. Les pages d'information restent lisibles sans.</p></noscript>
+
+    <!-- Écran 1 : réglages -->
+    <section id="screen-setup" class="card" aria-labelledby="setup-title">
+      <h2 id="setup-title" class="sr-only">Réglages du quiz</h2>
+      <form id="setup-form" novalidate>
+        <fieldset class="fieldset">
+          <legend>1. Votre démarche</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="procedure" value="csp" checked /><span>Carte de séjour pluriannuelle<small>Niveau de français A2</small></span></label>
+            <label class="choice"><input type="radio" name="procedure" value="cr" /><span>Carte de résident<small>Niveau de français B1</small></span></label>
+            <label class="choice"><input type="radio" name="procedure" value="nat" /><span>Naturalisation<small>Niveau de français B2</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend>2. Type d'entraînement</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="exam" value="0" checked /><span>Série libre<small>De 10 à 40 questions</small></span></label>
+            <label class="choice"><input type="radio" name="exam" value="1" /><span>Examen blanc<small>40 questions (dont 12 mises en situation), 45 min</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset class="fieldset" id="size-block">
+          <legend>3. Nombre de questions</legend>
+          <div class="choices">
+            {[10, 20, 30, 40].map((n, i) => <label class="choice"><input type="radio" name="size" value={n} checked={i === 0} /><span>{n} questions</span></label>)}
+          </div>
+        </fieldset>
+        <fieldset class="fieldset">
+          <legend>4. Correction</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="mode" value="instant" checked /><span>Après chaque question<small>Idéal pour apprendre</small></span></label>
+            <label class="choice"><input type="radio" name="mode" value="final" /><span>À la fin<small>Comme le jour de l'examen</small></span></label>
+          </div>
+        </fieldset>
+        <div id="ts" class="ts-box"></div>
+        <p class="hint">Une vérification anti-robot discrète protège le quiz. Elle ne dépose aucun cookie publicitaire.</p>
+        <p id="setup-error" class="error" role="alert" hidden></p>
+        <button class="btn" type="submit" id="start-btn">Commencer</button>
+      </form>
+    </section>
+
+    <!-- Écran 2 : question -->
+    <section id="screen-quiz" class="card" hidden aria-labelledby="q-text">
+      <div class="progress">
+        <span id="q-progress">Question 1 sur 10</span>
+        <span id="q-timer" class="timer" hidden role="timer" aria-live="off"></span>
+      </div>
+      <div class="bar" aria-hidden="true"><i id="q-bar"></i></div>
+      <p><span class="tag" id="q-theme"></span> <span class="tag sit" id="q-sit" hidden>Mise en situation</span></p>
+      <p class="question" id="q-text" tabindex="-1"></p>
+      <ul class="options" id="q-options" aria-labelledby="q-text"></ul>
+      <div id="q-feedback" aria-live="polite"></div>
+      <p id="q-error" class="error" role="alert" hidden></p>
+      <div class="nav-row">
+        <button type="button" class="btn btn-ghost" id="prev-btn">← Précédente</button>
+        <button type="button" class="btn" id="next-btn" disabled>Suivante</button>
+      </div>
+      <p><button type="button" class="link-btn" id="stop-btn">Arrêter le quiz</button></p>
+    </section>
+
+    <!-- Écran 3 : bilan -->
+    <section id="screen-results" class="card" hidden aria-labelledby="r-title">
+      <h2 id="r-title" tabindex="-1">Votre résultat</h2>
+      <p class="score" id="r-score"></p>
+      <p id="r-sub"></p>
+      <p id="r-verdict"></p>
+      <h3>Par thème</h3>
+      <div id="r-themes"></div>
+      <h3>Revoir mes réponses</h3>
+      <div class="filters" role="group" aria-label="Filtrer les réponses">
+        <button type="button" data-filter="all" aria-pressed="true">Toutes</button>
+        <button type="button" data-filter="ko" aria-pressed="false">À revoir</button>
+        <button type="button" data-filter="ok" aria-pressed="false">Réussies</button>
+      </div>
+      <ol class="review" id="r-review"></ol>
+      <div class="actions">
+        <button type="button" class="btn btn-ghost" id="pdf-btn">Télécharger mon score (PDF)</button>
+        <button type="button" class="btn" id="restart-btn">Nouvelle série</button>
+      </div>
+      <p class="hint">Le PDF contient votre score et le détail par thème, pas les questions.</p>
+    </section>
+
+    <dialog class="dialog" id="stop-dialog" aria-labelledby="stop-title">
+      <h2 id="stop-title">Arrêter le quiz ?</h2>
+      <p id="stop-text"></p>
+      <div class="actions">
+        <button type="button" class="btn" id="stop-results">Voir mon résultat</button>
+        <button type="button" class="btn btn-ghost" id="stop-resume">Continuer</button>
+      </div>
+      <p><button type="button" class="link-btn" id="stop-quit">Quitter sans résultat</button></p>
+    </dialog>
+
+    <p class="hint">Outil de révision non officiel. Les questions de connaissances s'inspirent des fiches publiées par le ministère de l'Intérieur ; vérifiez toujours les <a href={ROUTES.exam.fr}>règles officielles</a>.</p>
+  </div>
+  <script>
+    import '../scripts/quiz';
+  </script>
+</Base>

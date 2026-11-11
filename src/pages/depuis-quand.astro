@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Sources from '../components/Sources.astro';
+import { UPDATED } from '../i18n/routes';
+const events = [
+  { d: '2024-01-26', label: '26 janvier 2024', text: 'Promulgation de la loi n° 2024-42 « pour contrôler l’immigration, améliorer l’intégration » (Journal officiel du 27 janvier 2024). Son titre II, « Mieux intégrer par la langue », renforce les exigences de langue et crée l’examen civique.' },
+  { d: '2025-07-15', label: '15 juillet 2025', text: 'Décret n° 2025-648 : il adapte les règles de la naturalisation (décret n° 93-1362 du 30 décembre 1993) aux nouvelles exigences.' },
+  { d: '2025-10-10', label: '10 octobre 2025', text: 'Arrêté relatif au programme, aux épreuves et aux modalités d’organisation de l’examen civique (Journal officiel du 12 octobre 2025) : 40 questions, 45 minutes, 5 thèmes, seuil de 80 %.' },
+  { d: '2025-12-30', label: '30 décembre 2025', text: 'Arrêté fixant les cas de dispense des justificatifs de langue et d’examen civique pour les candidats à la nationalité.' },
+  { d: '2026-01-01', label: '1er janvier 2026', text: 'Entrée en vigueur : la réussite à l’examen civique devient obligatoire pour une première carte de séjour pluriannuelle, une carte de résident et la naturalisation.' },
+];
+---
+<Base lang="fr" page="since" title="Depuis quand l'examen civique est-il obligatoire ?"
+  description="L'examen civique est obligatoire depuis le 1er janvier 2026. Loi n° 2024-42 du 26 janvier 2024, décret du 15 juillet 2025, arrêté du 10 octobre 2025 : le calendrier et les textes officiels.">
+  <div class="prose">
+    <p class="eyebrow">Calendrier et textes</p>
+    <h1>Depuis quand l'examen civique est-il obligatoire ?</h1>
+    <p class="lead"><b>Depuis le 1<sup>er</sup> janvier 2026.</b> Il découle de la loi du 26 janvier 2024, complétée par un décret et deux arrêtés publiés en 2025.</p>
+    <p class="updated">Mis à jour le <time datetime={UPDATED}>11 novembre 2026</time></p>
+
+    <h2>Les grandes étapes</h2>
+    <ol class="review">
+      {events.map((e) => <li><b><time datetime={e.d}>{e.label}</time></b><br />{e.text}</li>)}
+    </ol>
+
+    <h2>Pourquoi cet examen ?</h2>
+    <p>La loi de 2024 lie davantage l'accès aux titres de séjour longs et à la nationalité à la connaissance de la langue française et des valeurs de la République. Avant 2026, la formation civique du contrat d'intégration républicaine se suivait après l'obtention du titre, sans examen à la clé. Elle se suit désormais avant, et elle se conclut par l'examen civique.</p>
+
+    <Sources lang="fr" keys={['loi', 'arrete', 'spActu', 'interieur', 'spExamen']} />
+  </div>
+</Base>

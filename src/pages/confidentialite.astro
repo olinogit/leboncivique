@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base lang="fr" page="privacy" title="Politique de confidentialité" description="Le bon civique ne demande ni compte, ni nom, ni e-mail. Quelles données techniques sont traitées, pourquoi et combien de temps.">
+  <div class="prose">
+    <h1>Politique de confidentialité</h1>
+    <p class="lead">Le bon civique fonctionne sans compte, sans nom et sans adresse e-mail. Nous traitons uniquement les données techniques nécessaires au fonctionnement et à la sécurité du quiz.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Donnée</th><th scope="col">Finalité</th><th scope="col">Base légale</th><th scope="col">Durée</th></tr></thead>
+        <tbody>
+          <tr><td>Cookie de partie (identifiant aléatoire, sans information personnelle)</td><td>Corriger vos réponses pendant une partie</td><td>Intérêt légitime ; cookie strictement nécessaire, exempté de consentement</td><td>2 heures, puis suppression</td></tr>
+          <tr><td>Réponses de la partie en cours</td><td>Calculer votre score</td><td>Intérêt légitime</td><td>Supprimées automatiquement, au plus tard 26 heures après le début de la partie</td></tr>
+          <tr><td>Empreinte d'adresse IP (hachage irréversible, renouvelé chaque jour)</td><td>Limiter les abus et la copie automatisée du quiz</td><td>Intérêt légitime (sécurité)</td><td>48 heures au plus</td></tr>
+          <tr><td>Vérification anti-robot Cloudflare Turnstile</td><td>Distinguer un humain d'un robot au lancement d'une partie</td><td>Intérêt légitime (sécurité)</td><td>Selon la politique de Cloudflare ; aucun cookie publicitaire</td></tr>
+          <tr><td>Journaux techniques de l'hébergeur</td><td>Sécurité et diagnostic</td><td>Intérêt légitime</td><td>Durée limitée fixée par l'hébergeur</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Aucune donnée n'est vendue, ni utilisée à des fins publicitaires. Votre préférence d'affichage (police adaptée à la dyslexie) est enregistrée uniquement dans votre navigateur.</p>
+    <h2>Sous-traitant et transferts</h2>
+    <p>Le site est hébergé par Cloudflare, Inc. La base de données est localisée en Europe. Cloudflare est certifié au titre du cadre de protection des données UE–États-Unis (Data Privacy Framework).</p>
+    <h2>Vos droits</h2>
+    <p>Comme nous ne collectons aucune donnée permettant de vous identifier directement, nous ne pouvons généralement pas retrouver vos données. Pour toute question ou pour exercer vos droits (accès, effacement, opposition) : <a href="mailto:contact@leboncivique.fr">contact@leboncivique.fr</a>. Vous pouvez aussi saisir la <a href="https://www.cnil.fr/fr/plaintes" rel="noopener">CNIL</a>.</p>
+    <!-- À COMPLÉTER si une mesure d'audience est ajoutée (Matomo ou Plausible configuré selon l'exemption CNIL) -->
+  </div>
+</Base>

@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+const faq = [
+  { q: 'Since when is the civic exam mandatory?', a: 'Since 1 January 2026, for a first multi-year residence permit, a first resident card and naturalisation.' },
+  { q: 'How many questions are there?', a: '40 multiple-choice questions: 28 knowledge questions and 12 real-life scenarios, in 45 minutes maximum.' },
+  { q: 'What score do I need?', a: 'At least 32 correct answers out of 40 (80%).' },
+  { q: 'Can I take the exam in English?', a: 'No. The exam is written in French only.' },
+  { q: 'Do I need to retake it to renew my permit?', a: 'No. Renewals of multi-year residence permits and resident cards are not concerned.' },
+  { q: 'Does the certificate expire?', a: 'No. The certificate of success has no expiry date.' },
+  { q: 'What level of French do I need?', a: 'A2 for the multi-year residence permit, B1 for the resident card, B2 for naturalisation.' },
+  { q: 'Is Le bon civique an official website?', a: 'No. It is an independent, free revision tool. Official information is on service-public.gouv.fr and the Ministry of the Interior website.' },
+];
+const ld = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+---
+<Base lang="en" page="faq" title="French civic exam: FAQ" description="Answers to common questions about the French civic exam: date, number of questions, pass mark, language, renewal, French level." jsonld={[ld]}>
+  <div class="prose">
+    <p class="eyebrow">FAQ</p>
+    <h1>Frequently asked questions</h1>
+    {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+  </div>
+</Base>

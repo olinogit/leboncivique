@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ROUTES } from '../../i18n/routes';
+---
+<Base lang="en" page="support" title="Support the site" description="Le bon civique is free for everyone. You can support it with a donation or by recommending it.">
+  <div class="prose">
+    <h1>Support Le bon civique</h1>
+    <p class="lead">The site and the quiz will stay free, with no sign-up and no intrusive advertising. If it helped you, you can contribute to its costs.</p>
+    <p>Donations are handled by a specialised platform: we never see or store your payment details.</p>
+    <!-- TO COMPLETE: donation page link -->
+    <div class="actions"><a class="btn" href="#donate" id="donate" aria-disabled="true">Donate (coming soon)</a></div>
+    <p>Some links to French test preparation may be partner links. They are always labelled “partner link” and never influence our content.</p>
+    <p>Charity or training organisation? See <a href={ROUTES.partners.en}>our offer for trainers</a>.</p>
+  </div>
+</Base>

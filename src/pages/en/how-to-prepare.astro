@@ -1,0 +1,23 @@
+---
+import Base from '../../layouts/Base.astro';
+import Sources from '../../components/Sources.astro';
+import { ROUTES, UPDATED } from '../../i18n/routes';
+---
+<Base lang="en" page="prepare" title="How to prepare for the French civic exam" description="How to revise for the French civic exam: official fact sheets, civic training, approved centres, mock exams and a 4-step method.">
+  <div class="prose">
+    <p class="eyebrow">Method</p>
+    <h1>How to prepare for the civic exam</h1>
+    <p class="updated">Updated <time datetime={UPDATED}>11 November 2026</time></p>
+    <ol>
+      <li><b>Read the official fact sheets</b> on the Ministry of the Interior’s civic training website, topic by topic (in French).</li>
+      <li><b>Practise in short series</b> of 10 or 20 questions with instant feedback, to understand each answer.</li>
+      <li><b>Work on the scenarios</b>: they ask you to apply a principle (equality, secularism, children’s rights…) to a concrete case.</li>
+      <li><b>Take mock exams</b> of 40 questions in 45 minutes until you regularly score above 32.</li>
+    </ol>
+    <p>Because the exam is in French, practising in French is also good training for reading the questions quickly on the day.</p>
+    <h2>Where to take the exam</h2>
+    <p>In a centre approved by the Ministry of the Interior. The Paris Île-de-France Chamber of Commerce and France Éducation international provide centre search tools. Each centre sets its price and dates.</p>
+    <div class="actions"><a class="btn" href={ROUTES.quiz.en}>About the practice quiz</a></div>
+    <Sources lang="en" keys={['formation', 'spExamen', 'fei']} />
+  </div>
+</Base>

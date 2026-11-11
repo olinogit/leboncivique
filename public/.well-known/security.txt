@@ -1,0 +1,5 @@
+Contact: mailto:securite@leboncivique.fr
+Expires: 2027-11-11T00:00:00.000Z
+Preferred-Languages: fr, en
+Canonical: https://leboncivique.fr/.well-known/security.txt
+Policy: https://leboncivique.fr/mentions-legales/

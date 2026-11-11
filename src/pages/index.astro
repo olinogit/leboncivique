@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { ROUTES } from '../i18n/routes';
+---
+<Base lang="fr" page="home" title="Le bon civique : comprendre et réussir l'examen civique 2026"
+  description="Examen civique 2026 : qui est concerné, comment il se déroule, et un quiz gratuit avec mises en situation pour s'entraîner (carte de séjour pluriannuelle, carte de résident, naturalisation).">
+  <p class="eyebrow">Examen civique 2026</p>
+  <h1>Comprendre l'examen civique et s'entraîner gratuitement</h1>
+  <p class="lead">Depuis le 1<sup>er</sup> janvier 2026, il faut réussir un examen civique pour obtenir une première carte de séjour pluriannuelle, une carte de résident ou la nationalité française. Le bon civique vous explique les règles simplement et vous propose un quiz d'entraînement avec des mises en situation.</p>
+  <div class="actions">
+    <a class="btn" href={ROUTES.quiz.fr}>Commencer le quiz</a>
+    <a class="btn btn-ghost" href={ROUTES.who.fr}>Suis-je concerné ?</a>
+  </div>
+
+  <div class="kpis" role="list">
+    <div class="kpi" role="listitem"><b>40</b><span>questions à choix multiples</span></div>
+    <div class="kpi" role="listitem"><b>45 min</b><span>durée maximale</span></div>
+    <div class="kpi" role="listitem"><b>32 / 40</b><span>bonnes réponses pour réussir (80 %)</span></div>
+    <div class="kpi" role="listitem"><b>12</b><span>mises en situation</span></div>
+  </div>
+
+  <h2>Tout ce qu'il faut savoir</h2>
+  <div class="grid">
+    <div class="card"><h3><a href={ROUTES.exam.fr}>L'examen civique</a></h3><p>Le format, les 5 thèmes du programme officiel et le déroulement le jour J.</p></div>
+    <div class="card"><h3><a href={ROUTES.who.fr}>Qui est concerné ?</a></h3><p>Carte de séjour pluriannuelle, carte de résident, naturalisation : qui doit passer l'examen, qui en est dispensé, et le niveau de français demandé.</p></div>
+    <div class="card"><h3><a href={ROUTES.since.fr}>Depuis quand ?</a></h3><p>La loi du 26 janvier 2024, les textes d'application et le calendrier.</p></div>
+    <div class="card"><h3><a href={ROUTES.prepare.fr}>Se préparer</a></h3><p>La formation civique, les centres agréés et une méthode de révision simple.</p></div>
+  </div>
+
+  <h2>Un quiz pensé comme l'examen</h2>
+  <p>Entraînez-vous par série de 10 à 40 questions, ou passez un <b>examen blanc</b> de 40 questions (28 de connaissances et 12 mises en situation) en 45 minutes. Chaque réponse est expliquée et renvoie vers la fiche officielle. Le quiz est gratuit, sans inscription, et se passe exclusivement en français, comme l'examen.</p>
+  <p><a href={ROUTES.samples.fr}>Voir des questions d'exemple</a></p>
+</Base>
