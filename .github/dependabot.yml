@@ -2,10 +2,16 @@ version: 2
 updates:
   - package-ecosystem: npm
     directory: /
-    schedule: { interval: weekly }
-    cooldown: { default-days: 7 }
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
     groups:
-      astro: { patterns: ['astro', '@astrojs/*'] }
+      astro:
+        patterns: ['astro', '@astrojs/*']
   - package-ecosystem: github-actions
     directory: /
-    schedule: { interval: weekly }
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
