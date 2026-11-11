@@ -21,7 +21,7 @@
       "binding": "DB",
       "database_name": "leboncivique",
       // Remplacer par l'identifiant renvoyé par : npx wrangler d1 create leboncivique --location weur
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "b856193f-2eb3-4e05-9f6f-c20852540bc2",
       "migrations_dir": "migrations"
     }
   ],
