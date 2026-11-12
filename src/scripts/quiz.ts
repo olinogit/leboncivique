@@ -345,14 +345,30 @@ function renderResults(r: Results) {
       return li;
     }),
   );
-  filter('all');
+  const ko = r.review.filter((it) => !it.correct).length;
+  const counts: Record<string, number> = { ko, ok: r.review.length - ko, all: r.review.length };
+  document.querySelectorAll<HTMLButtonElement>('.filters button').forEach((b) => {
+    const n = counts[b.dataset.filter ?? 'all'] ?? 0;
+    $(`r-count-${b.dataset.filter}`).textContent = String(n);
+    b.disabled = n === 0;
+  });
+  filter(null);
 }
 
-function filter(f: string) {
+let currentFilter: string | null = null;
+function filter(f: string | null) {
+  currentFilter = f;
   document.querySelectorAll<HTMLButtonElement>('.filters button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === f)));
-  $('r-review').querySelectorAll<HTMLElement>('li').forEach((li) => { li.hidden = f !== 'all' && li.dataset.state !== f; });
+  const list = $('r-review');
+  list.hidden = f === null;
+  list.querySelectorAll<HTMLElement>('li').forEach((li) => { li.hidden = f !== 'all' && li.dataset.state !== f; });
 }
-document.querySelectorAll<HTMLButtonElement>('.filters button').forEach((b) => b.addEventListener('click', () => filter(b.dataset.filter ?? 'all')));
+document.querySelectorAll<HTMLButtonElement>('.filters button').forEach((b) =>
+  b.addEventListener('click', () => {
+    const f = b.dataset.filter ?? 'all';
+    filter(currentFilter === f ? null : f);
+  }),
+);
 $('restart-btn').addEventListener('click', () => { show('setup'); $('setup-title').focus(); });
 
 // ------------------------------------------------------------------- PDF

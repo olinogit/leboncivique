@@ -222,6 +222,10 @@ details[open] > :last-child { margin-bottom: 20px; }
 .review li.ko::before { background: var(--error); }
 .filters { display: flex; gap: 8px; flex-wrap: wrap; }
 .filters button { border: 1px solid var(--mist); background: var(--paper); color: var(--ink); border-radius: 100px; padding: 8px 16px; font: inherit; font-size: 0.875rem; letter-spacing: inherit; cursor: pointer; min-height: 36px; }
+.filters button .count { display: inline-block; min-width: 1.6em; margin-left: 6px; padding: 0 6px; border-radius: 100px; background: var(--snow); font-size: 0.8125rem; font-weight: 600; }
+.filters button[aria-pressed='true'] .count { background: rgba(255,255,255,0.18); }
+.filters button:disabled { opacity: 0.45; cursor: not-allowed; }
+.filters button:not(:disabled):hover { border-color: var(--midnight); }
 .filters button[aria-pressed='true'] { border-color: var(--midnight); background: var(--midnight); color: var(--on-dark); font-weight: 600; }
 .dialog::backdrop { background: rgba(13, 17, 27, 0.45); }
 .dialog { border: 0; border-radius: 32px; background: var(--paper); color: var(--ink); max-width: 480px; width: calc(100% - 32px); padding: 32px; box-shadow: 0 24px 48px rgba(13, 17, 27, 0.18); }

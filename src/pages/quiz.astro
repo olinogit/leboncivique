@@ -83,12 +83,13 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? '1x00000000000000000
       <h3>Par thème</h3>
       <div id="r-themes"></div>
       <h3>Revoir mes réponses</h3>
-      <div class="filters" role="group" aria-label="Filtrer les réponses">
-        <button type="button" data-filter="all" aria-pressed="true">Toutes</button>
-        <button type="button" data-filter="ko" aria-pressed="false">À revoir</button>
-        <button type="button" data-filter="ok" aria-pressed="false">Réussies</button>
+      <p class="hint" id="r-review-hint">Choisissez les réponses à afficher. Touchez à nouveau le même choix pour masquer la liste.</p>
+      <div class="filters" role="group" aria-label="Afficher les réponses" aria-describedby="r-review-hint">
+        <button type="button" data-filter="ko" aria-pressed="false" aria-controls="r-review">À revoir <span class="count" id="r-count-ko"></span></button>
+        <button type="button" data-filter="ok" aria-pressed="false" aria-controls="r-review">Réussies <span class="count" id="r-count-ok"></span></button>
+        <button type="button" data-filter="all" aria-pressed="false" aria-controls="r-review">Toutes <span class="count" id="r-count-all"></span></button>
       </div>
-      <ol class="review" id="r-review"></ol>
+      <ol class="review" id="r-review" hidden aria-live="polite"></ol>
       <div class="actions">
         <button type="button" class="btn btn-ghost" id="pdf-btn">Télécharger mon score (PDF)</button>
         <button type="button" class="btn" id="restart-btn">Nouvelle série</button>
