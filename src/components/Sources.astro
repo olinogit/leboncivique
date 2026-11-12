@@ -1,0 +1,9 @@
+---
+import { SRC, type SourceKey } from '../data/sources';
+interface Props { keys: SourceKey[]; lang: 'fr' | 'en' }
+const { keys, lang } = Astro.props;
+---
+<h2>{lang === 'fr' ? 'Sources officielles' : 'Official sources (in French)'}</h2>
+<ul class="sources">
+  {keys.map((k) => <li><a href={SRC[k].url} rel="noopener" lang="fr">{SRC[k].label}</a></li>)}
+</ul>

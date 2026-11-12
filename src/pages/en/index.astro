@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ROUTES } from '../../i18n/routes';
+import Icon from '../../components/Icon.astro';
+---
+<Base lang="en" page="home" title="Le bon civique: understand and pass the French civic exam (2026)"
+  description="The French civic exam (examen civique) explained in English: who must take it, how it works, and a free practice quiz in French for residence permits and naturalisation.">
+  <section class="hero">
+  <p class="eyebrow">French civic exam 2026</p>
+  <h1>Understand the French civic exam and practise for free</h1>
+  <p class="lead">Since 1 January 2026, you must pass a civic exam (<i lang="fr">examen civique</i>) to obtain a first multi-year residence permit, a resident card or French citizenship. This site explains the rules in plain English and offers a practice quiz with real-life scenarios.</p>
+  <div class="callout">The exam itself is held <b>only in French</b>, so our practice quiz is in French too. These information pages are available in English to help you understand the process.</div>
+  <div class="actions">
+    <a class="btn" href={ROUTES.quiz.en}>About the practice quiz</a>
+    <a class="btn btn-ghost" href={ROUTES.who.en}>Do I need to take it?</a>
+  </div>
+  </section>
+  <div class="kpis" role="list">
+    <div class="kpi" role="listitem"><span class="icon-chip ic-blue"><Icon name="questions" /></span><b>40</b><span>multiple-choice questions</span></div>
+    <div class="kpi" role="listitem"><span class="icon-chip ic-iris"><Icon name="clock" /></span><b>45 min</b><span>maximum duration</span></div>
+    <div class="kpi" role="listitem"><span class="icon-chip ic-leaf"><Icon name="target" /></span><b>32 / 40</b><span>correct answers to pass (80%)</span></div>
+    <div class="kpi" role="listitem"><span class="icon-chip ic-magenta"><Icon name="chat" /></span><b>12</b><span>real-life scenarios</span></div>
+  </div>
+  <div class="grid">
+    <div class="card card-link"><span class="icon-chip ic-blue"><Icon name="doc" /></span><h3><a href={ROUTES.exam.en}>The civic exam</a></h3><p>Format, the 5 official topics and what happens on the day.</p></div>
+    <div class="card card-link"><span class="icon-chip ic-iris"><Icon name="users" /></span><h3><a href={ROUTES.who.en}>Who must take it?</a></h3><p>Residence permits, resident card, citizenship: who is concerned, who is exempt, and the French level required.</p></div>
+    <div class="card card-link"><span class="icon-chip ic-leaf"><Icon name="calendar" /></span><h3><a href={ROUTES.since.en}>Since when?</a></h3><p>The law of 26 January 2024, its implementing texts and the timeline.</p></div>
+    <div class="card card-link"><span class="icon-chip ic-magenta"><Icon name="book" /></span><h3><a href={ROUTES.prepare.en}>How to prepare</a></h3><p>Civic training, approved test centres and a simple revision method.</p></div>
+  </div>
+</Base>

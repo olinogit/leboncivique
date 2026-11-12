@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import Sources from '../../components/Sources.astro';
+import { UPDATED } from '../../i18n/routes';
+const events = [
+  { d: '2024-01-26', label: '26 January 2024', text: 'Law no. 2024-42 “to control immigration and improve integration” is enacted (Official Journal of 27 January 2024). Its title II, “Better integration through language”, tightens language requirements and creates the civic exam.' },
+  { d: '2025-07-15', label: '15 July 2025', text: 'Decree no. 2025-648 adapts the naturalisation rules to the new requirements.' },
+  { d: '2025-10-10', label: '10 October 2025', text: 'Order on the syllabus and organisation of the civic exam (Official Journal of 12 October 2025): 40 questions, 45 minutes, 5 topics, 80% pass mark.' },
+  { d: '2025-12-30', label: '30 December 2025', text: 'Order setting out exemptions from the language and civic exam certificates for citizenship applicants.' },
+  { d: '2026-01-01', label: '1 January 2026', text: 'Entry into force: passing the civic exam becomes mandatory for a first multi-year residence permit, a resident card and naturalisation.' },
+];
+---
+<Base lang="en" page="since" title="Since when is the French civic exam mandatory?"
+  description="The French civic exam has been mandatory since 1 January 2026, under Law no. 2024-42 of 26 January 2024 and its implementing decree and orders. Timeline and official texts.">
+  <div class="prose">
+    <p class="eyebrow">Timeline</p>
+    <h1>Since when is the civic exam mandatory?</h1>
+    <p class="lead"><b>Since 1 January 2026.</b> It stems from the law of 26 January 2024, completed by a decree and two orders published in 2025.</p>
+    <p class="updated">Updated <time datetime={UPDATED}>11 November 2026</time></p>
+    <ol class="review">{events.map((e) => <li><b><time datetime={e.d}>{e.label}</time></b><br />{e.text}</li>)}</ol>
+    <h2>Why this exam?</h2>
+    <p>The 2024 law links access to long-term residence permits and citizenship more closely to knowledge of French and of the values of the Republic. Before 2026, the civic training of the republican integration contract was taken after obtaining the permit, with no exam. It is now taken before, and ends with the civic exam.</p>
+    <Sources lang="en" keys={['loi', 'arrete', 'spActu', 'interieur']} />
+  </div>
+</Base>

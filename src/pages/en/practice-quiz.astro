@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import { ROUTES } from '../../i18n/routes';
+---
+<Base lang="en" page="quiz" title="Practice quiz (in French)" description="A free practice quiz for the French civic exam: series of 10 to 40 questions or a 40-question mock exam in 45 minutes. In French, like the real exam.">
+  <div class="prose">
+    <p class="eyebrow">Practice quiz</p>
+    <h1>Practice quiz, in French</h1>
+    <p class="lead">The civic exam is taken only in French. To prepare you for the real conditions, our quiz is in French too.</p>
+    <ul>
+      <li>Choose your procedure: multi-year residence permit (<i lang="fr">carte de séjour pluriannuelle</i>), resident card (<i lang="fr">carte de résident</i>) or naturalisation.</li>
+      <li>Practise with a free series of 10 to 40 questions, or take a <b>mock exam</b> (<i lang="fr">examen blanc</i>): 40 questions including 12 scenarios, in 45 minutes.</li>
+      <li>Every answer is explained and linked to the official fact sheet.</li>
+      <li>Free, no account, no sign-up.</li>
+    </ul>
+    <div class="actions"><a class="btn" href={ROUTES.quiz.fr} hreflang="fr">Start the quiz (in French)</a></div>
+  </div>
+</Base>

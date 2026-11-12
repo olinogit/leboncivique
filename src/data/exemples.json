@@ -1,0 +1,702 @@
+[
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "À quoi correspond la date du 14 juillet ?",
+    "options": [
+      "La signature de la Constitution de 1958",
+      "L'abolition de l'esclavage",
+      "La fin de la Première Guerre mondiale",
+      "La prise de la Bastille et la fête de la Fédération"
+    ],
+    "answer": "La prise de la Bastille et la fête de la Fédération",
+    "explanation": "C'est la fête nationale française. Elle commémore la prise de la Bastille (14 juillet 1789) et la Fête de la Fédération (14 juillet 1790).",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/les-symboles-de-la-republique/la-fete-nationale/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "Quels sont des symboles officiels de la République française ?",
+    "options": [
+      "Le drapeau européen",
+      "Le drapeau, la devise et l'hymne national",
+      "Le coq et la tour Eiffel",
+      "La Croix de Lorraine et le blason royal"
+    ],
+    "answer": "Le drapeau, la devise et l'hymne national",
+    "explanation": "Le drapeau tricolore, Marianne, la devise « Liberté, Égalité, Fraternité », l'hymne national (la Marseillaise), le 14 juillet et le sceau de l'État.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/les-symboles-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "Quelle est la devise de la République française ?",
+    "options": [
+      "Liberté, Égalité, Fraternité",
+      "Travail, Famille, Patrie",
+      "Unité, Ordre, Progrès",
+      "Paix, Justice, Liberté"
+    ],
+    "answer": "Liberté, Égalité, Fraternité",
+    "explanation": "« Liberté, Égalité, Fraternité ».",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/devise-et-symboles-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "Une personne peut-elle changer librement de religion ?",
+    "options": [
+      "Non, c'est interdit par la loi",
+      "Seulement avec l'accord de la mairie",
+      "Non, sauf autorisation judiciaire",
+      "Oui, la liberté de conscience le garantit"
+    ],
+    "answer": "Oui, la liberté de conscience le garantit",
+    "explanation": "Oui, la liberté de conscience et de culte est garantie par la loi.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/laicite/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "A-t-on le droit de ne pas respecter une loi ?",
+    "options": [
+      "Oui, pour les étrangers uniquement",
+      "Oui, une fois par an",
+      "Non, la loi s'impose à tous",
+      "Oui, si on n'est pas d'accord"
+    ],
+    "answer": "Non, la loi s'impose à tous",
+    "explanation": "Non, la loi s'impose à tous et sa violation peut être sanctionnée.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "La liberté d'expression sur les réseaux sociaux en France est :",
+    "options": [
+      "Totale et sans aucune limite",
+      "Interdite pour les sujets politiques",
+      "Réservée aux personnes majeures et de nationalité française",
+      "Garantie mais limitée par la loi (interdiction des propos racistes, diffamatoires ou incitant à la haine)"
+    ],
+    "answer": "Garantie mais limitée par la loi (interdiction des propos racistes, diffamatoires ou incitant à la haine)",
+    "explanation": "La liberté d'expression s'applique aussi sur internet, mais elle est encadrée par la loi : injure, diffamation, incitation à la haine ou au terrorisme sont punies.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "Qu'est-ce que la liberté d'association ?",
+    "options": [
+      "Le droit de voter à plusieurs élections",
+      "Le droit de changer de nationalité",
+      "Le droit de créer librement une association ou d'y adhérer",
+      "Le droit de se marier librement"
+    ],
+    "answer": "Le droit de créer librement une association ou d'y adhérer",
+    "explanation": "La liberté d'association permet à toute personne de créer une association ou d'y adhérer librement, sans autorisation préalable de l'État.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "knowledge",
+    "text": "Quel jour célèbre-t-on officiellement la laïcité en France ?",
+    "options": [
+      "Le 1er mai",
+      "Le 9 décembre",
+      "Le 14 juillet",
+      "Le 8 mai"
+    ],
+    "answer": "Le 9 décembre",
+    "explanation": "Le 9 décembre, date anniversaire de la loi de 1905, est la journée nationale de la laïcité en France.",
+    "source": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000508749/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "situation",
+    "text": "Dans une entreprise, un salarié refuse de travailler avec sa collègue au motif qu'elle est une femme. Quel principe de la République n'est pas respecté ?",
+    "options": [
+      "Le droit de grève",
+      "La séparation des pouvoirs",
+      "L'égalité entre les femmes et les hommes",
+      "La liberté d'association"
+    ],
+    "answer": "L'égalité entre les femmes et les hommes",
+    "explanation": "Les femmes et les hommes sont égaux en droits : refuser de travailler avec une collègue à cause de son sexe est une discrimination.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
+  },
+  {
+    "theme": "Principes et valeurs de la République",
+    "kind": "situation",
+    "text": "Un de vos amis veut changer de religion mais sa famille s'y oppose. Qu'affirme la loi ?",
+    "options": [
+      "Il doit obtenir l'accord de sa famille",
+      "Il doit en informer la mairie",
+      "Le changement de religion est interdit",
+      "Il est libre de changer de religion : la liberté de conscience est garantie"
+    ],
+    "answer": "Il est libre de changer de religion : la liberté de conscience est garantie",
+    "explanation": "La liberté de conscience permet de croire, de ne pas croire ou de changer de religion librement.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/principes-et-valeurs-de-la-republique/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "De quand date la Constitution de la Ve République ?",
+    "options": [
+      "4 août 1995",
+      "4 octobre 1958",
+      "14 juillet 1789",
+      "27 octobre 1946"
+    ],
+    "answer": "4 octobre 1958",
+    "explanation": "Du 4 octobre 1958.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/la-cinquieme-republique/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "L'autorité judiciaire est exercée par :",
+    "options": [
+      "Le gouvernement",
+      "Les préfets",
+      "Les juges et les tribunaux",
+      "Le Parlement"
+    ],
+    "answer": "Les juges et les tribunaux",
+    "explanation": "Les juges et les tribunaux.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Pour combien de temps sont élus les sénateurs ?",
+    "options": [
+      "6 ans",
+      "5 ans",
+      "9 ans",
+      "4 ans"
+    ],
+    "answer": "6 ans",
+    "explanation": "6 ans.",
+    "source": "https://www.senat.fr"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui sanctionne l'auteur d'un vol ?",
+    "options": [
+      "La police seule",
+      "Le maire",
+      "Le préfet",
+      "La justice, via un tribunal"
+    ],
+    "answer": "La justice, via un tribunal",
+    "explanation": "La justice, par l'intermédiaire d'un tribunal.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/etat-de-droit-et-separation-des-pouvoirs/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui est le préfet ?",
+    "options": [
+      "Le chef de la police nationale",
+      "Un élu local",
+      "Le président du tribunal",
+      "Le représentant de l'État dans le département"
+    ],
+    "answer": "Le représentant de l'État dans le département",
+    "explanation": "Le représentant de l'État dans le département, nommé par le gouvernement.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/organisation-de-la-republique-fran%C3%A7aise/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Qui élit les députés européens ?",
+    "options": [
+      "Le Conseil européen",
+      "Les gouvernements nationaux",
+      "Les citoyens des États membres de l'Union européenne",
+      "Les parlements nationaux"
+    ],
+    "answer": "Les citoyens des États membres de l'Union européenne",
+    "explanation": "Les citoyens des États membres de l'Union européenne, au suffrage universel direct.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/systeme-institutionnel-et-politique/institutions-europeennes/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quelles sont les fonctions du maire ?",
+    "options": [
+      "Nommer les préfets",
+      "Juger les litiges civils",
+      "Diriger l'administration communale, exécuter les lois et célébrer les mariages civils",
+      "Voter les lois nationales"
+    ],
+    "answer": "Diriger l'administration communale, exécuter les lois et célébrer les mariages civils",
+    "explanation": "Le maire dirige les services municipaux, exécute les décisions du conseil municipal, est responsable de l'état civil et agit comme représentant de l'État dans la commune (publication des lois, organisation des élections).",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quelle est la durée du mandat des sénateurs ?",
+    "options": [
+      "4 ans",
+      "6 ans",
+      "5 ans",
+      "9 ans"
+    ],
+    "answer": "6 ans",
+    "explanation": "Les sénateurs sont élus pour un mandat de 6 ans, le Sénat étant renouvelé par moitié tous les 3 ans.",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Quel est le rôle du Conseil constitutionnel ?",
+    "options": [
+      "Vérifier que les lois sont conformes à la Constitution",
+      "Juger les crimes les plus graves",
+      "Nommer le Premier ministre",
+      "Administrer les collectivités locales"
+    ],
+    "answer": "Vérifier que les lois sont conformes à la Constitution",
+    "explanation": "Le Conseil constitutionnel veille à la conformité des lois à la Constitution et contrôle la régularité des élections nationales et des référendums.",
+    "source": "https://www.vie-publique.fr/"
+  },
+  {
+    "theme": "Système institutionnel et politique",
+    "kind": "knowledge",
+    "text": "Où est le siège de la Banque centrale européenne ?",
+    "options": [
+      "Bruxelles (Belgique)",
+      "Strasbourg (France)",
+      "Luxembourg",
+      "Francfort (Allemagne)"
+    ],
+    "answer": "Francfort (Allemagne)",
+    "explanation": "La Banque centrale européenne (BCE) a son siège à Francfort-sur-le-Main, en Allemagne.",
+    "source": "https://www.touteleurope.eu/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Comment s'appelle la Constitution actuelle de la France ?",
+    "options": [
+      "La Constitution de la Ve République (1958)",
+      "La Constitution de la IVe République",
+      "La Charte de 1814",
+      "La Constitution de l'An I"
+    ],
+    "answer": "La Constitution de la Ve République (1958)",
+    "explanation": "La Constitution de la Ve République, adoptée le 4 octobre 1958.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/la-cinquieme-republique/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Quel est le texte fondateur établissant en France les droits et les devoirs de chaque citoyen ?",
+    "options": [
+      "La Déclaration des droits de l'homme et du citoyen de 1789",
+      "Le Code civil de 1804",
+      "La Constitution de 1946",
+      "La loi de 1905"
+    ],
+    "answer": "La Déclaration des droits de l'homme et du citoyen de 1789",
+    "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789.",
+    "source": "https://www.legifrance.gouv.fr/contenu/menu/droit-national-en-vigueur/constitution/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Faut-il réduire ses déchets ?",
+    "options": [
+      "Oui, c'est un geste civique recommandé",
+      "Non, ce n'est pas utile",
+      "Seulement les entreprises doivent le faire",
+      "Non, c'est facultatif et sans intérêt"
+    ],
+    "answer": "Oui, c'est un geste civique recommandé",
+    "explanation": "Oui, c'est un geste civique et écologique recommandé, notamment par le tri et le recyclage.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/obligations-et-devoirs-des-personnes-residant-en-france/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Qu'est-ce qu'une infraction ?",
+    "options": [
+      "Un acte qui viole la loi",
+      "Un acte toujours puni de prison",
+      "Une erreur administrative",
+      "Un désaccord entre voisins"
+    ],
+    "answer": "Un acte qui viole la loi",
+    "explanation": "Un acte qui viole la loi ; on distingue la contravention, le délit et le crime, selon la gravité.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/obligations-et-devoirs-des-personnes-residant-en-france/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Laquelle de ces citations est inscrite dans la Déclaration des Droits de l'Homme et du Citoyen de 1789 ?",
+    "options": [
+      "\"Les hommes naissent et demeurent libres et égaux en droits\"",
+      "\"Liberté, Égalité, Fraternité\"",
+      "\"Travail, Famille, Patrie\"",
+      "\"Unité, Indivisibilité, Laïcité\""
+    ],
+    "answer": "\"Les hommes naissent et demeurent libres et égaux en droits\"",
+    "explanation": "L'article 1er de la Déclaration des droits de l'homme et du citoyen de 1789 énonce : \"Les hommes naissent et demeurent libres et égaux en droits.\"",
+    "source": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Quel est le texte fondateur établissant les droits et les devoirs de chaque citoyen ?",
+    "options": [
+      "La Déclaration des droits de l'homme et du citoyen de 1789",
+      "La loi de 1905",
+      "Le traité de Maastricht",
+      "La loi Jules Ferry"
+    ],
+    "answer": "La Déclaration des droits de l'homme et du citoyen de 1789",
+    "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 est le texte fondateur énonçant les droits et libertés des citoyens, aujourd'hui intégré au bloc de constitutionnalité.",
+    "source": "https://www.conseil-constitutionnel.fr/le-bloc-de-constitutionnalite/declaration-des-droits-de-l-homme-et-du-citoyen-de-1789"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "En quoi consiste le devoir de solidarité ?",
+    "options": [
+      "Contribuer, notamment par les impôts et les cotisations, au financement de la protection sociale collective",
+      "Donner de l'argent uniquement à des associations caritatives",
+      "Aider uniquement ses proches",
+      "Voter à toutes les élections"
+    ],
+    "answer": "Contribuer, notamment par les impôts et les cotisations, au financement de la protection sociale collective",
+    "explanation": "Le devoir de solidarité se traduit notamment par la contribution de chacun, via les impôts et les cotisations sociales, au financement collectif de la protection sociale (santé, retraite, chômage).",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "knowledge",
+    "text": "Pour obtenir une carte d'identité, il faut :",
+    "options": [
+      "Déposer une demande en mairie avec les pièces justificatives requises (acte de naissance, photo, justificatif de domicile)",
+      "S'adresser uniquement à la préfecture de Paris",
+      "Payer une taxe élevée à chaque renouvellement",
+      "Être obligatoirement propriétaire d'un logement"
+    ],
+    "answer": "Déposer une demande en mairie avec les pièces justificatives requises (acte de naissance, photo, justificatif de domicile)",
+    "explanation": "La demande de carte nationale d'identité se fait en mairie (dans les communes équipées) sur présentation des pièces justificatives nécessaires ; elle est gratuite en cas de première demande ou de renouvellement normal.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "situation",
+    "text": "Vous êtes témoin d'un accident de la route. Que devez-vous faire ?",
+    "options": [
+      "Alerter les secours (15, 18 ou 112) et porter assistance sans vous mettre en danger",
+      "Continuer votre chemin",
+      "Attendre que quelqu'un d'autre intervienne",
+      "Filmer la scène en priorité"
+    ],
+    "answer": "Alerter les secours (15, 18 ou 112) et porter assistance sans vous mettre en danger",
+    "explanation": "Ne pas porter secours à une personne en danger est un délit : il faut alerter les secours et aider si possible.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/"
+  },
+  {
+    "theme": "Droits et devoirs",
+    "kind": "situation",
+    "text": "Un jeune de 17 ans veut voter à l'élection présidentielle. Est-ce possible ?",
+    "options": [
+      "Non, il faut avoir 18 ans",
+      "Oui, dès 16 ans",
+      "Oui, avec l'accord de ses parents",
+      "Oui, s'il travaille"
+    ],
+    "answer": "Non, il faut avoir 18 ans",
+    "explanation": "L'âge minimum pour voter est de 18 ans.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/droits-et-devoirs/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "En quelle année a débuté la Révolution française ?",
+    "options": [
+      "1958",
+      "1848",
+      "1789",
+      "1804"
+    ],
+    "answer": "1789",
+    "explanation": "En 1789.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/les-regimes-politiques-depuis-1789/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Le 11 novembre est un jour férié. À quoi correspond cette date ?",
+    "options": [
+      "L'armistice de 1918",
+      "La fin de la Seconde Guerre mondiale",
+      "La prise de la Bastille",
+      "La fête du Travail"
+    ],
+    "answer": "L'armistice de 1918",
+    "explanation": "L'armistice de 1918, marquant la fin de la Première Guerre mondiale.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/zoom-sur/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Quelle ville est française ?",
+    "options": [
+      "Bruxelles",
+      "Lyon",
+      "Turin",
+      "Genève"
+    ],
+    "answer": "Lyon",
+    "explanation": "Par exemple Paris, Lyon ou Marseille.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/atlas-de-la-france/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Quelle chaîne de montagnes est située entre la France et l'Italie ?",
+    "options": [
+      "Le Massif central",
+      "Les Vosges",
+      "Les Alpes",
+      "Les Pyrénées"
+    ],
+    "answer": "Les Alpes",
+    "explanation": "Les Alpes.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/atlas-de-la-france/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Qui était Jean de la Fontaine ?",
+    "options": [
+      "Un peintre du XXe siècle",
+      "Un roi de France",
+      "Un homme politique",
+      "Un écrivain français auteur des Fables"
+    ],
+    "answer": "Un écrivain français auteur des Fables",
+    "explanation": "Un écrivain français du XVIIe siècle, auteur des Fables.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/culture/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "En quelle année Napoléon Ier est-il devenu empereur ?",
+    "options": [
+      "1799",
+      "1804",
+      "1789",
+      "1815"
+    ],
+    "answer": "1804",
+    "explanation": "Napoléon Bonaparte s'est fait sacrer empereur des Français le 2 décembre 1804.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Depuis quand l'esclavage a-t-il été aboli en France ?",
+    "options": [
+      "1789, dès la Révolution",
+      "1905",
+      "1958",
+      "1848, de manière définitive"
+    ],
+    "answer": "1848, de manière définitive",
+    "explanation": "L'esclavage a été définitivement aboli dans les colonies françaises en 1848, grâce notamment à l'action de Victor Schœlcher.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Qui a peint \"La liberté guidant le peuple\" ?",
+    "options": [
+      "Eugène Delacroix",
+      "Claude Monet",
+      "Auguste Renoir",
+      "Paul Cézanne"
+    ],
+    "answer": "Eugène Delacroix",
+    "explanation": "\"La Liberté guidant le peuple\" (1830) est une œuvre majeure du peintre romantique français Eugène Delacroix, exposée au musée du Louvre.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Qui était un célèbre compositeur français ?",
+    "options": [
+      "Johann Sebastian Bach",
+      "Claude Debussy",
+      "Ludwig van Beethoven",
+      "Wolfgang Amadeus Mozart"
+    ],
+    "answer": "Claude Debussy",
+    "explanation": "Claude Debussy, figure majeure de la musique impressionniste, est un compositeur français de la fin du XIXe et du début du XXe siècle.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/"
+  },
+  {
+    "theme": "Histoire, géographie et culture",
+    "kind": "knowledge",
+    "text": "Quelle mer ou océan borde la France métropolitaine ?",
+    "options": [
+      "La mer Noire",
+      "La mer Rouge",
+      "La mer Méditerranée",
+      "L'océan Pacifique"
+    ],
+    "answer": "La mer Méditerranée",
+    "explanation": "La France métropolitaine est bordée par la mer Méditerranée au sud, ainsi que par l'océan Atlantique et la Manche.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/histoire-geographie-et-culture/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Quel numéro d'urgence permet d'appeler le SAMU ?",
+    "options": [
+      "Le 17",
+      "Le 18",
+      "Le 112",
+      "Le 15"
+    ],
+    "answer": "Le 15",
+    "explanation": "Le 15.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-fran%C3%A7aise/sante/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Quelle est la première démarche à réaliser pour chercher un emploi ?",
+    "options": [
+      "Contacter directement le ministère du Travail",
+      "Payer une agence privée",
+      "Attendre une offre spontanée",
+      "S'inscrire à France Travail"
+    ],
+    "answer": "S'inscrire à France Travail",
+    "explanation": "S'inscrire auprès de France Travail (ex-Pôle emploi).",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-fran%C3%A7aise/emploi/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Concernant l'accès aux soins, quelle proposition est correcte ?",
+    "options": [
+      "Seuls les Français ont accès aux soins",
+      "L'accès aux soins est payant sans exception",
+      "Seules les personnes assurées peuvent être soignées",
+      "Toute personne en France a accès aux soins"
+    ],
+    "answer": "Toute personne en France a accès aux soins",
+    "explanation": "Toute personne présente en France a accès aux soins, y compris via des dispositifs d'aide pour les personnes sans couverture sociale complète.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-fran%C3%A7aise/sante/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "L'autorité parentale prévoit l'obligation :",
+    "options": [
+      "De payer les études supérieures",
+      "De choisir la religion de l'enfant",
+      "De travailler pour subvenir aux besoins uniquement",
+      "De veiller à la santé, la sécurité et l'éducation de l'enfant"
+    ],
+    "answer": "De veiller à la santé, la sécurité et l'éducation de l'enfant",
+    "explanation": "De veiller à la santé, à la sécurité, à l'éducation et à la scolarisation de l'enfant.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-fran%C3%A7aise/parentalite/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Quelle action peut réaliser le locataire d'un logement sans l'autorisation du propriétaire ?",
+    "options": [
+      "La sous-location sans accord écrit préalable",
+      "La résiliation anticipée du bail du propriétaire",
+      "Les menus travaux d'entretien courant du logement",
+      "Des travaux de transformation importants"
+    ],
+    "answer": "Les menus travaux d'entretien courant du logement",
+    "explanation": "Un locataire peut librement effectuer les petits travaux d'entretien courant, mais doit obtenir l'accord écrit du propriétaire pour toute transformation importante ou sous-location.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "En cas de divorce, qui exerce l'autorité parentale ?",
+    "options": [
+      "Automatiquement le père",
+      "Un tuteur désigné par le juge",
+      "En général, les deux parents conjointement, sauf décision contraire du juge",
+      "Automatiquement la mère"
+    ],
+    "answer": "En général, les deux parents conjointement, sauf décision contraire du juge",
+    "explanation": "En cas de divorce, l'autorité parentale est en principe exercée conjointement par les deux parents, sauf si le juge aux affaires familiales en décide autrement dans l'intérêt de l'enfant.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Qui peut demander un congé parental d'éducation ?",
+    "options": [
+      "Uniquement les fonctionnaires",
+      "Uniquement les familles nombreuses",
+      "Tout salarié, père ou mère, après la naissance ou l'adoption d'un enfant",
+      "Uniquement la mère"
+    ],
+    "answer": "Tout salarié, père ou mère, après la naissance ou l'adoption d'un enfant",
+    "explanation": "Le congé parental d'éducation est ouvert à tout salarié, père ou mère, justifiant d'une certaine ancienneté, après la naissance ou l'adoption d'un enfant.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "knowledge",
+    "text": "Quel motif d'absence est accepté par l'école ?",
+    "options": [
+      "Le souhait des parents sans raison précise",
+      "Les vacances en dehors des périodes scolaires sans autorisation",
+      "La maladie de l'enfant, dûment justifiée",
+      "Un rendez-vous de loisir sans justification"
+    ],
+    "answer": "La maladie de l'enfant, dûment justifiée",
+    "explanation": "L'absence scolaire doit être justifiée par un motif légitime, comme la maladie, un rendez-vous médical ou un événement familial grave.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "situation",
+    "text": "Votre enfant a de la fièvre un dimanche et son état n'est pas grave. Que faites-vous ?",
+    "options": [
+      "Contacter un médecin de garde ou votre médecin traitant",
+      "Appeler les pompiers",
+      "Attendre sans rien faire pendant une semaine",
+      "Aller à la mairie"
+    ],
+    "answer": "Contacter un médecin de garde ou votre médecin traitant",
+    "explanation": "Pour un problème de santé non urgent, on s'adresse d'abord à son médecin ; le 15 est réservé aux urgences médicales.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  },
+  {
+    "theme": "Vivre dans la société française",
+    "kind": "situation",
+    "text": "Vous louez un logement. Que doit-il y avoir entre vous et le propriétaire ?",
+    "options": [
+      "Aucun document",
+      "Une autorisation du maire",
+      "Un contrat de location (bail) et un état des lieux",
+      "Un accord oral suffisant"
+    ],
+    "answer": "Un contrat de location (bail) et un état des lieux",
+    "explanation": "La location d'un logement est encadrée par un bail écrit et un état des lieux d'entrée et de sortie.",
+    "source": "https://formation-civique.interieur.gouv.fr/fiches-par-thematiques/vivre-dans-la-societe-francaise/"
+  }
+]

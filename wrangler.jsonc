@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "leboncivique",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-20",
+  "workers_dev": false,
+  "routes": [
+    { "pattern": "leboncivique.fr", "custom_domain": true },
+    { "pattern": "www.leboncivique.fr", "custom_domain": true }
+  ],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    // Seule l'API passe par le Worker ; les pages statiques sont servies directement avec public/_headers.
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "leboncivique",
+      // Remplacer par l'identifiant renvoyé par : npx wrangler d1 create leboncivique --location weur
+      "database_id": "b856193f-2eb3-4e05-9f6f-c20852540bc2",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "triggers": { "crons": ["17 3 * * *"] },
+  "vars": {
+    "ENVIRONMENT": "production",
+    "SESSIONS_PER_HOUR": "8",
+    "SESSIONS_PER_DAY": "20",
+    "REQUESTS_PER_MINUTE": "90"
+  },
+  "observability": { "enabled": true, "head_sampling_rate": 0.1 }
+  // Secrets (jamais dans ce fichier) : wrangler secret put TURNSTILE_SECRET ; wrangler secret put IP_HASH_KEY
+}

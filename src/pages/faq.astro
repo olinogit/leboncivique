@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { ROUTES } from '../i18n/routes';
+const faq = [
+  { q: "Depuis quand l'examen civique est-il obligatoire ?", a: "Depuis le 1er janvier 2026, pour une première carte de séjour pluriannuelle, une première carte de résident et pour la naturalisation." },
+  { q: "Combien de questions comporte l'examen civique ?", a: "40 questions à choix multiples : 28 questions de connaissances et 12 mises en situation, en 45 minutes maximum." },
+  { q: "Quelle note faut-il pour réussir ?", a: "Au moins 32 bonnes réponses sur 40, soit 80 %." },
+  { q: "L'examen se passe-t-il en français ?", a: "Oui. Le questionnaire est rédigé en français. C'est pourquoi notre quiz est lui aussi uniquement en français." },
+  { q: "Faut-il repasser l'examen pour renouveler sa carte ?", a: "Non. Les renouvellements de carte de séjour pluriannuelle et de carte de résident ne sont pas concernés." },
+  { q: "L'attestation de réussite expire-t-elle ?", a: "Non, l'attestation de réussite n'a pas de durée de validité limitée." },
+  { q: "Où passer l'examen ?", a: "Dans un centre agréé par le ministère de l'Intérieur. La CCI Paris Île-de-France et France Éducation international proposent des outils de recherche de centres." },
+  { q: "Quel niveau de français faut-il ?", a: "A2 pour la carte de séjour pluriannuelle, B1 pour la carte de résident, B2 pour la naturalisation." },
+  { q: "Le bon civique est-il un site officiel ?", a: "Non. C'est un outil de révision indépendant et gratuit. Les informations officielles se trouvent sur service-public.gouv.fr et sur le site du ministère de l'Intérieur." },
+  { q: "Mes réponses au quiz sont-elles conservées ?", a: "Une partie de quiz est conservée au maximum quelques heures pour corriger vos réponses, sans aucun nom, e-mail ni compte. Elle est ensuite supprimée automatiquement." },
+];
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+<Base lang="fr" page="faq" title="Examen civique : questions fréquentes" description="Les réponses aux questions fréquentes sur l'examen civique 2026 : date, nombre de questions, note de réussite, niveau de français, renouvellement, centres agréés." jsonld={[ld]}>
+  <div class="prose">
+    <p class="eyebrow">FAQ</p>
+    <h1>Questions fréquentes</h1>
+    {faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}
+    <p>Vous ne trouvez pas votre réponse ? Consultez <a href={ROUTES.who.fr}>qui est concerné</a> ou <a href={ROUTES.exam.fr}>le format de l'examen</a>.</p>
+  </div>
+</Base>

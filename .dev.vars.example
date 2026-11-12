@@ -1,0 +1,3 @@
+ENVIRONMENT=development
+IP_HASH_KEY=dev-only-key-not-secret
+# TURNSTILE_SECRET absent en local : la vérification est ignorée (jamais en production)

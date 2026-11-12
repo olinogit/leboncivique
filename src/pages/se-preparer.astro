@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Sources from '../components/Sources.astro';
+import { ROUTES, UPDATED } from '../i18n/routes';
+---
+<Base lang="fr" page="prepare" title="Se préparer à l'examen civique"
+  description="Comment réviser l'examen civique : fiches officielles, formation civique, centres agréés, examens blancs et méthode en 4 étapes.">
+  <div class="prose">
+    <p class="eyebrow">Méthode</p>
+    <h1>Se préparer à l'examen civique</h1>
+    <p class="lead">Avec une révision régulière et des examens blancs, l'examen est tout à fait accessible. Voici une méthode simple.</p>
+    <p class="updated">Mis à jour le <time datetime={UPDATED}>11 novembre 2026</time></p>
+
+    <h2>Une méthode en 4 étapes</h2>
+    <ol>
+      <li><b>Lisez les fiches officielles</b> du site de formation civique du ministère de l'Intérieur, thème par thème.</li>
+      <li><b>Entraînez-vous par séries courtes</b> de 10 ou 20 questions, avec la correction immédiate, pour comprendre chaque réponse.</li>
+      <li><b>Travaillez les mises en situation</b> : elles demandent d'appliquer un principe (égalité, laïcité, droits des enfants…) à un cas concret.</li>
+      <li><b>Passez des examens blancs</b> de 40 questions en 45 minutes, jusqu'à dépasser régulièrement 32 bonnes réponses.</li>
+    </ol>
+
+    <h2>La formation civique</h2>
+    <p>Si vous demandez une première carte de séjour pluriannuelle, vous suivez une formation civique de 24 heures sur 4 jours dans le cadre du contrat d'intégration républicaine, qui se termine par l'examen.</p>
+
+    <h2>Où passer l'examen ?</h2>
+    <p>L'examen se passe dans un <b>centre agréé</b> par le ministère de l'Intérieur. Des outils de recherche de centres sont proposés par la CCI Paris Île-de-France et par France Éducation international. Le prix et les dates de session sont indiqués par le centre.</p>
+
+    <div class="actions">
+      <a class="btn" href={ROUTES.quiz.fr}>Commencer à m'entraîner</a>
+      <a class="btn btn-ghost" href={ROUTES.samples.fr}>Questions d'exemple</a>
+    </div>
+
+    <Sources lang="fr" keys={['formation', 'spExamen', 'fei']} />
+  </div>
+</Base>

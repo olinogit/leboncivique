@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Sources from '../components/Sources.astro';
+import { ROUTES, UPDATED } from '../i18n/routes';
+---
+<Base lang="fr" page="who" title="Qui doit passer l'examen civique ?"
+  description="Examen civique : obligatoire pour une première carte de séjour pluriannuelle, une carte de résident ou une naturalisation. Exemptions, cas particuliers et niveau de français exigé (A2, B1, B2).">
+  <div class="prose">
+    <p class="eyebrow">Personnes concernées</p>
+    <h1>Qui doit passer l'examen civique ?</h1>
+    <p class="lead">L'examen concerne trois démarches : une première carte de séjour pluriannuelle ou de résident, pour les ressortissants de pays hors Union européenne, et la naturalisation. Chaque démarche a aussi son niveau de français obligatoire.</p>
+    <p class="updated">Mis à jour le <time datetime={UPDATED}>11 novembre 2026</time></p>
+
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">Démarches concernées et niveau de français exigé</caption>
+        <thead><tr><th scope="col">Démarche</th><th scope="col">Examen civique</th><th scope="col">Niveau de français</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Première carte de séjour pluriannuelle</th><td>Oui, à l'issue de la formation civique</td><td>A2</td></tr>
+          <tr><th scope="row">Première carte de résident</th><td>Oui, pour les catégories concernées</td><td>B1</td></tr>
+          <tr><th scope="row">Naturalisation par décret</th><td>Oui</td><td>B2, à l'oral et à l'écrit</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Les niveaux A2, B1 et B2 sont ceux du Cadre européen commun de référence pour les langues (CECRL). Ils se prouvent avec un diplôme ou un test reconnu (TCF, TEF, DELF, DALF, etc.).</p>
+
+    <h2>Carte de séjour pluriannuelle</h2>
+    <p>Pour une <b>première</b> carte de séjour pluriannuelle, l'examen civique conclut la formation civique de 24 heures, répartie sur 4 jours, prévue par le contrat d'intégration républicaine. Cette formation se suit désormais <b>avant</b> l'obtention du titre.</p>
+    <p>Ne sont notamment pas concernés : les titres qui ne relèvent pas du contrat d'intégration républicaine, les bénéficiaires de la protection subsidiaire et les apatrides, ainsi que les membres de leur famille.</p>
+
+    <h2>Carte de résident</h2>
+    <p>Pour une <b>première</b> carte de résident, l'examen concerne certaines catégories, par exemple le conjoint de Français, le parent d'enfant français ou le regroupement familial, ainsi que la carte de résident de longue durée-UE. Les règles varient selon la catégorie : vérifiez votre situation sur la fiche officielle.</p>
+
+    <h2>Naturalisation</h2>
+    <p>Toute demande de naturalisation par décret doit comporter l'attestation de réussite à l'examen civique et la preuve d'un niveau B2 en français. Certaines personnes peuvent être dispensées de produire ces justificatifs (arrêté du 30 décembre 2025), par exemple une personne réfugiée âgée de plus de 70 ans et résidant en France depuis plus de 15 ans pour la langue.</p>
+
+    <h2>Qui est dispensé ?</h2>
+    <ul>
+      <li>Les <b>renouvellements</b> de carte de séjour pluriannuelle ou de carte de résident.</li>
+      <li>Les personnes de <b>plus de 65 ans</b>, pour les titres de séjour.</li>
+      <li>Les personnes dont le <b>handicap ou l'état de santé</b> rend l'évaluation impossible, sur certificat médical. D'autres peuvent obtenir des aménagements de l'épreuve.</li>
+      <li>Pour les titres de séjour : les citoyens de l'Union européenne, de l'Espace économique européen et de la Suisse, qui ne demandent pas ces titres.</li>
+    </ul>
+    <div class="callout">Ces règles comportent des exceptions. En cas de doute, la fiche service-public.gouv.fr de votre démarche et votre préfecture font foi.</div>
+
+    <div class="actions"><a class="btn" href={ROUTES.quiz.fr}>S'entraîner pour ma démarche</a></div>
+
+    <Sources lang="fr" keys={['spExamen', 'spLangue', 'spNatLangue', 'spNat', 'spActu']} />
+  </div>
+</Base>

@@ -1,0 +1,25 @@
+name: DAST (OWASP ZAP baseline)
+
+# Lancement manuel sur la préproduction ou la production.
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: URL à analyser
+        required: true
+        default: https://leboncivique.fr/
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  zap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: zaproxy/action-baseline@2b5fc7f98d837319798ab7f128ea50b7d40563b6 # v0.14.0
+        with:
+          target: ${{ inputs.target }}
+          fail_action: true
+          allow_issue_writing: false

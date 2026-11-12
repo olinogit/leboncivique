@@ -1,0 +1,54 @@
+---
+import Base from '../layouts/Base.astro';
+import Sources from '../components/Sources.astro';
+import { ROUTES, UPDATED } from '../i18n/routes';
+---
+<Base lang="fr" page="exam" title="L'examen civique : format, thèmes et déroulement"
+  description="Examen civique : 40 questions en 45 minutes, 32 bonnes réponses pour réussir, 5 thèmes officiels et 12 mises en situation. Le programme détaillé de l'arrêté du 10 octobre 2025.">
+  <div class="prose">
+    <p class="eyebrow">Le format officiel</p>
+    <h1>L'examen civique</h1>
+    <p class="lead">L'examen civique vérifie que vous connaissez les principes et les valeurs de la République, les institutions, vos droits et devoirs, l'histoire de la France et la vie quotidienne en société.</p>
+    <p class="updated">Mis à jour le <time datetime={UPDATED}>11 novembre 2026</time></p>
+
+    <h2>Le format en bref</h2>
+    <ul>
+      <li><b>40 questions</b> à choix multiples, rédigées en français, avec <b>une seule bonne réponse</b> parmi 4.</li>
+      <li><b>28 questions de connaissances</b> et <b>12 mises en situation</b> (des cas de la vie courante).</li>
+      <li><b>45 minutes</b> au maximum, sur ordinateur ou tablette, dans un centre agréé. Des aménagements sont possibles pour raison médicale.</li>
+      <li>1 point par bonne réponse, 0 point pour une mauvaise réponse ou une absence de réponse.</li>
+      <li><b>Pour réussir : au moins 32 bonnes réponses sur 40</b>, soit 80 %.</li>
+    </ul>
+    <p>Le programme et le nombre de questions sont les mêmes pour les trois « mentions » de l'examen : carte de séjour pluriannuelle, carte de résident et naturalisation.</p>
+
+    <h2>Les 5 thèmes et la répartition des questions</h2>
+    <div class="table-scroll">
+      <table>
+        <caption class="sr-only">Répartition des 40 questions par thème</caption>
+        <thead><tr><th scope="col">Thème</th><th scope="col">Questions</th><th scope="col">Détail</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Principes et valeurs de la République</th><td>11</td><td>devise et symboles (3), laïcité (2), mises en situation (6)</td></tr>
+          <tr><th scope="row">Système institutionnel et politique</th><td>6</td><td>démocratie et droit de vote (3), organisation de la République (2), institutions européennes (1)</td></tr>
+          <tr><th scope="row">Droits et devoirs</th><td>11</td><td>droits fondamentaux (2), obligations et devoirs (3), mises en situation (6)</td></tr>
+          <tr><th scope="row">Histoire, géographie et culture</th><td>8</td><td>périodes et personnages (3), territoires (3), patrimoine (2)</td></tr>
+          <tr><th scope="row">Vivre dans la société française</th><td>4</td><td>s'installer (1), accès aux soins (1), travail (1), autorité parentale et école (1)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Source : article 3 de l'arrêté du 10 octobre 2025. Le ministère de l'Intérieur publie les questions de connaissances sur son site de formation civique.</p>
+
+    <h2>Après l'examen</h2>
+    <p>En cas de réussite, vous recevez une <b>attestation de réussite</b>. Elle n'a pas de durée de validité limitée. Vous la joignez à votre demande de titre de séjour ou de naturalisation : l'examen doit donc être passé <b>avant</b> le dépôt du dossier.</p>
+    <div class="callout">
+      <b>Attention à la fraude :</b> un examen entaché de fraude est annulé, et le candidat ne peut pas le repasser pendant deux ans.
+    </div>
+    <p>Le prix de l'examen et les dates de session sont indiqués par chaque centre au moment de l'inscription. Les textes que nous avons consultés ne limitent pas le nombre de tentatives, en dehors du cas de fraude.</p>
+
+    <div class="actions">
+      <a class="btn" href={ROUTES.quiz.fr}>S'entraîner avec un examen blanc</a>
+      <a class="btn btn-ghost" href={ROUTES.who.fr}>Suis-je concerné ?</a>
+    </div>
+
+    <Sources lang="fr" keys={['arrete', 'spExamen', 'spActu', 'formation', 'fei']} />
+  </div>
+</Base>

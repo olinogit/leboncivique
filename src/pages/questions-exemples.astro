@@ -1,0 +1,45 @@
+---
+import Base from '../layouts/Base.astro';
+import { ROUTES } from '../i18n/routes';
+import exemples from '../data/exemples.json';
+const themes = [...new Set(exemples.map((e) => e.theme))];
+const slug = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+const quizLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Quiz',
+  name: "Questions d'exemple de l'examen civique",
+  inLanguage: 'fr-FR',
+  educationalLevel: 'Examen civique 2026',
+  hasPart: exemples.map((e) => ({
+    '@type': 'Question',
+    eduQuestionType: 'Multiple choice',
+    text: e.text,
+    suggestedAnswer: e.options.filter((o) => o !== e.answer).map((o) => ({ '@type': 'Answer', text: o })),
+    acceptedAnswer: { '@type': 'Answer', text: e.answer },
+  })),
+};
+---
+<Base lang="fr" page="samples" title="Questions d'exemple de l'examen civique (avec réponses)"
+  description={`${exemples.length} questions d'exemple de l'examen civique, corrigées et expliquées, classées par thème : principes de la République, droits et devoirs, histoire, vie en France, mises en situation.`}
+  jsonld={[quizLd]}>
+  <div class="prose">
+    <p class="eyebrow">Exemples corrigés</p>
+    <h1>Questions d'exemple de l'examen civique</h1>
+    <p class="lead">Voici {exemples.length} questions de notre banque, avec leur réponse et une explication. Pour vous entraîner sur l'ensemble des questions, dans les conditions de l'examen, utilisez le quiz.</p>
+    <div class="actions"><a class="btn" href={ROUTES.quiz.fr}>Faire le quiz complet</a></div>
+    <nav aria-label="Thèmes"><ul>{themes.map((t) => <li><a href={`#${slug(t)}`}>{t}</a></li>)}</ul></nav>
+    {themes.map((t) => (
+      <section aria-labelledby={slug(t)}>
+        <h2 id={slug(t)}>{t}</h2>
+        {exemples.filter((e) => e.theme === t).map((e) => (
+          <details>
+            <summary>{e.kind === 'situation' && <span class="tag sit">Mise en situation</span>} {e.text}</summary>
+            <ol type="A">{e.options.map((o) => <li>{o === e.answer ? <b>{o} (bonne réponse)</b> : o}</li>)}</ol>
+            <p>{e.explanation}</p>
+            {e.source && <p class="hint"><a href={e.source} rel="noopener">Fiche officielle</a></p>}
+          </details>
+        ))}
+      </section>
+    ))}
+  </div>
+</Base>

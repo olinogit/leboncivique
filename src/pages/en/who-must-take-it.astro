@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import Sources from '../../components/Sources.astro';
+import { ROUTES, UPDATED } from '../../i18n/routes';
+---
+<Base lang="en" page="who" title="Who must take the French civic exam?"
+  description="The French civic exam is required for a first multi-year residence permit, a resident card or naturalisation. Exemptions and required French level (A2, B1, B2).">
+  <div class="prose">
+    <p class="eyebrow">Who is concerned</p>
+    <h1>Who must take the civic exam?</h1>
+    <p class="lead">Three procedures are concerned: a first multi-year residence permit or resident card, for non-EU nationals, and naturalisation. Each also requires a minimum level of French.</p>
+    <p class="updated">Updated <time datetime={UPDATED}>11 November 2026</time></p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Procedure</th><th scope="col">Civic exam</th><th scope="col">French level</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">First multi-year residence permit (<i lang="fr">carte de séjour pluriannuelle</i>)</th><td>Yes, at the end of the civic training</td><td>A2</td></tr>
+          <tr><th scope="row">First resident card (<i lang="fr">carte de résident</i>)</th><td>Yes, for the categories concerned</td><td>B1</td></tr>
+          <tr><th scope="row">Naturalisation</th><td>Yes</td><td>B2, spoken and written</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Levels follow the Common European Framework of Reference for Languages (CEFR) and are proven with a recognised diploma or test (TCF, TEF, DELF, DALF, etc.).</p>
+    <h2>Who is exempt?</h2>
+    <ul>
+      <li><b>Renewals</b> of a multi-year residence permit or a resident card.</li>
+      <li>People <b>over 65</b>, for residence permits.</li>
+      <li>People whose <b>disability or health</b> makes the assessment impossible, with a medical certificate. Others can get exam adjustments.</li>
+      <li>For the multi-year permit: permits outside the republican integration contract, beneficiaries of subsidiary protection, stateless people, and their families.</li>
+      <li>For residence permits: EU, EEA and Swiss citizens, who do not apply for these permits.</li>
+    </ul>
+    <p>For naturalisation, some candidates can be exempted from providing the language or civic exam certificate (order of 30 December 2025).</p>
+    <div class="callout">These rules have exceptions. The official service-public.gouv.fr page for your procedure, and your prefecture, are the authority.</div>
+    <div class="actions"><a class="btn" href={ROUTES.quiz.en}>About the practice quiz</a></div>
+    <Sources lang="en" keys={['spExamen', 'spLangue', 'spNatLangue', 'spNat', 'spActu']} />
+  </div>
+</Base>

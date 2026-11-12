@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import { ROUTES } from '../i18n/routes';
+---
+<Base lang="fr" page="support" title="Soutenir le site" description="Le bon civique est gratuit pour tous. Vous pouvez soutenir son fonctionnement par un don ou en le recommandant.">
+  <div class="prose">
+    <p class="eyebrow">Gratuit pour tous</p>
+    <h1>Soutenir Le bon civique</h1>
+    <p class="lead">Le site et le quiz resteront gratuits, sans inscription et sans publicité intrusive. Si l'outil vous a aidé, vous pouvez participer à ses frais (hébergement, mise à jour des questions, accessibilité).</p>
+    <h2>Faire un don</h2>
+    <p>Les dons sont libres et ponctuels ou mensuels. Le paiement est géré par une plateforme spécialisée : Le bon civique ne voit ni ne stocke vos coordonnées bancaires.</p>
+    <div class="actions">
+      <!-- À COMPLÉTER : lien vers la page de dons (Liberapay, Ko-fi ou Tipeee) -->
+      <a class="btn" href="#don" id="don" aria-disabled="true">Faire un don (bientôt disponible)</a>
+    </div>
+    <h2>Autres façons d'aider</h2>
+    <ul>
+      <li>Partagez le site avec une personne qui prépare l'examen.</li>
+      <li>Signalez une erreur dans une question ou une explication.</li>
+      <li>Vous êtes une association ou un organisme de formation ? Découvrez <a href={ROUTES.partners.fr}>notre offre pour les formateurs</a>.</li>
+    </ul>
+    <h2>Transparence</h2>
+    <p>Le site peut contenir des liens partenaires vers des préparations aux tests de français. Ils sont toujours signalés par la mention « lien partenaire ». Ils n'influencent pas le contenu des questions ni des explications.</p>
+  </div>
+</Base>
