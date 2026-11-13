@@ -1,0 +1,147 @@
+---
+// Animation « Comment marche le quiz ? » : le parcours du quiz en 5 étapes, en 36 secondes.
+// Le balisage est rendu à la compilation (pas d'innerHTML : compatible Trusted Types),
+// le script src/scripts/explainer.ts ne fait que l'animer. Décor visuel masqué aux lecteurs
+// d'écran : la même information est donnée en texte dans la liste .sr-only.
+// Les questions montrées viennent des questions publiques (src/data/exemples.json ou fiches du ministère).
+import '../styles/explainer.css';
+
+const SCENES = [
+  { id: 'intro', kick: 'Examen civique 2026', title: 'Comment marche le quiz ?', sub: 'Le quiz Le bon civique, expliqué en 30 secondes.' },
+  { id: 'choose', kick: 'Étape 1 sur 5', title: 'Réglez votre quiz', sub: 'Votre démarche, puis la correction : après chaque question pour apprendre, ou à la fin comme à l’examen.' },
+  { id: 'answer', kick: 'Étape 2 sur 5', title: 'Répondez, on vous corrige', sub: 'Après chaque question : la bonne réponse, une explication et la fiche officielle.' },
+  { id: 'situation', kick: 'Étape 3 sur 5', title: 'Les mises en situation', sub: 'Des cas concrets du quotidien, comme le jour de l’examen.' },
+  { id: 'results', kick: 'Étape 4 sur 5', title: 'Voyez où vous en êtes', sub: 'Votre score, le détail par thème et les questions à revoir.' },
+  { id: 'pdf', kick: 'Étape 5 sur 5', title: 'Gardez une trace', sub: 'Téléchargez votre score en PDF pour suivre vos progrès.' },
+  { id: 'cta', kick: 'Gratuit et sans inscription', title: 'À vous de jouer !', sub: 'Entraînez-vous gratuitement sur leboncivique.fr' },
+];
+const THEMES: [string, number, number][] = [
+  ['Principes et valeurs de la République', 10, 11],
+  ['Système institutionnel et politique', 5, 6],
+  ['Droits et devoirs', 10, 11],
+  ['Histoire, géographie et culture', 6, 8],
+  ['Vivre dans la société française', 3, 4],
+];
+const pct = (a: number, b: number) => String(Math.round((a / b) * 100));
+const Q1 = [
+  ['a1', 'A', 'Les citoyens français majeurs inscrits sur les listes électorales', 'Bonne réponse'],
+  ['a2', 'B', 'Les citoyens européens uniquement', ''],
+  ['a3', 'C', 'Toute personne résidant en France', 'Votre réponse'],
+  ['a4', 'D', 'Les personnes nées en France uniquement', ''],
+];
+const Q2 = [
+  ['s1', 'A', 'Continuer votre chemin', ''],
+  ['s2', 'B', 'Alerter les secours (15, 18 ou 112) et porter assistance sans vous mettre en danger', 'Bonne réponse'],
+  ['s3', 'C', 'Attendre que quelqu’un d’autre intervienne', ''],
+  ['s4', 'D', 'Filmer la scène en priorité', ''],
+];
+---
+<figure class="lbc" data-lbc>
+  <div class="lbc-fit wide" aria-hidden="true">
+    <div class="lbc-stage" data-format="wide">
+      <div class="lbc-head">
+        {SCENES.map((s) => <div class="lbc-headitem" data-k={`h-${s.id}`}><div class="lbc-kick">{s.kick}</div><div class="lbc-h">{s.title}</div></div>)}
+      </div>
+      <div class="lbc-area"><div class="lbc-inner">
+        <div class="lbc-scene" data-k="s-intro"><div class="lbc-intro">
+          <div data-k="ilogo"><svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="18" fill="#0d111b"/><path d="M19 12v38" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="37" r="13" fill="none" stroke="#fff" stroke-width="7"/><path d="M27.5 37.5l4 4 8-8.5" fill="none" stroke="#0098f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="lbc-intro-t" data-k="it">Quiz de l’examen civique</div>
+          <div class="lbc-chips"><span data-k="ch1"><i>✓</i>Gratuit</span><span data-k="ch2"><i>✓</i>Sans inscription</span><span data-k="ch3"><i>✓</i>Corrigé et expliqué</span></div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-choose"><div class="lbc-card lbc-settings">
+          <div class="lbc-lbl">Votre démarche</div>
+          <div class="lbc-row c3">
+            <div class="lbc-opt"><b>Carte de séjour pluriannuelle</b><small>Niveau de français A2</small></div>
+            <div class="lbc-opt" data-k="c2"><b>Carte de résident</b><small>Niveau de français B1</small></div>
+            <div class="lbc-opt"><b>Naturalisation</b><small>Niveau de français B2</small></div>
+          </div>
+          <div class="lbc-lbl">Type d’entraînement</div>
+          <div class="lbc-row c2">
+            <div class="lbc-opt" data-k="t1"><b>Série libre</b><small>De 10 à 40 questions</small></div>
+            <div class="lbc-opt"><b>Examen blanc</b><small>40 questions dont 12 mises en situation, 45 min</small></div>
+          </div>
+          <div class="lbc-lbl">Correction</div>
+          <div class="lbc-row c2">
+            <div class="lbc-opt" data-k="k1"><b>Après chaque question</b><small>Idéal pour apprendre</small></div>
+            <div class="lbc-opt"><b>À la fin</b><small>Comme le jour de l’examen</small></div>
+          </div>
+          <div class="lbc-btn dark" data-k="go">Commencer</div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-answer"><div class="lbc-card">
+          <div class="lbc-qtop"><span class="lbc-dem"><em>DÉMARCHE</em>Carte de résident</span><span class="lbc-muted">Question 3 sur 10</span></div>
+          <div class="lbc-bar"><i data-w="30"></i></div>
+          <span class="lbc-tag">Système institutionnel et politique</span>
+          <div class="lbc-q">Qui peut voter aux élections en France&#8239;?</div>
+          {Q1.map(([k, l, txt, st]) => <div class="lbc-ans" data-k={k}><span class="l">{l}<s data-k={`${k}-dot`}>{l}</s></span><span>{txt}</span><span class="st" data-k={`${k}-st`}>{st}</span></div>)}
+          <div class="lbc-fb ko" data-k="fb1"><b>Ce n’est pas la bonne réponse</b><span>Les citoyens français majeurs, inscrits sur les listes électorales.</span><u>Voir la fiche officielle</u></div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-situation"><div class="lbc-card">
+          <span class="lbc-tag ms">Mise en situation</span>
+          <div class="lbc-q">Vous êtes témoin d’un accident de la route. Que devez-vous faire&#8239;?</div>
+          {Q2.map(([k, l, txt, st]) => <div class="lbc-ans" data-k={k}><span class="l">{l}<s data-k={`${k}-dot`}>{l}</s></span><span>{txt}</span><span class="st" data-k={`${k}-st`}>{st}</span></div>)}
+          <div class="lbc-fb ok" data-k="fb2"><b>Bonne réponse&#8239;!</b><span>Ne pas porter secours à une personne en danger est un délit&#8239;: il faut alerter les secours et aider si possible.</span></div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-results"><div class="lbc-card">
+          <div class="lbc-rt">Votre résultat</div>
+          <div class="lbc-score"><span data-k="num">34</span> / 40</div>
+          <div class="lbc-meta"><span>85&nbsp;% de bonnes réponses · Carte de résident</span><span class="lbc-pass" data-k="pass">Seuil de 80&nbsp;% atteint</span></div>
+          <div class="lbc-swap">
+            <div data-k="themes">
+              {THEMES.map(([n, a, b], i) => <div class="lbc-th"><span>{n}</span><span>{a} sur {b}</span><div class="lbc-bar"><i data-k={`tb${i}`} data-w={pct(a, b)}></i></div></div>)}
+            </div>
+            <div data-k="review">
+              <div class="lbc-rv"><b>Qui peut voter aux élections en France&#8239;?</b><span class="ko">✕ Votre réponse&#8239;: Toute personne résidant en France</span><span class="ok">✓ Bonne réponse&#8239;: Les citoyens français majeurs inscrits sur les listes électorales</span></div>
+              <div class="lbc-rv"><b>Quel est le rôle du Conseil constitutionnel&#8239;?</b><span class="ko">✕ Votre réponse&#8239;: Voter les lois</span><span class="ok">✓ Bonne réponse&#8239;: Vérifier que les lois respectent la Constitution</span></div>
+            </div>
+          </div>
+          <div class="lbc-pills"><span class="lbc-pill" data-k="p1">À revoir <i>6</i></span><span class="lbc-pill">Réussies <i>34</i></span><span class="lbc-pill">Toutes <i>40</i></span></div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-pdf"><div class="lbc-pdfwrap">
+          <div class="lbc-doc" data-k="doc"><span class="badge">PDF</span>
+            <div class="h"><svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="18" fill="#0d111b"/><path d="M19 12v38" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="37" r="13" fill="none" stroke="#fff" stroke-width="7"/><path d="M27.5 37.5l4 4 8-8.5" fill="none" stroke="#0098f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Le bon civique</div>
+            <div class="m">Résultat · Carte de résident · Série libre</div>
+            <div class="s">34 / 40</div><div class="m">85&nbsp;% de bonnes réponses</div>
+            {THEMES.slice(0, 4).map(([n, a, b]) => <Fragment><div class="m">{n}</div><div class="lbc-bar"><i data-w={pct(a, b)}></i></div></Fragment>)}
+          </div>
+          <div class="lbc-btns"><span class="lbc-btn" data-k="dl">Télécharger mon score (PDF)</span><span class="lbc-btn dark">Nouvelle série</span></div>
+          <div class="lbc-note">Le PDF contient votre score et le détail par thème.</div>
+        </div></div>
+
+        <div class="lbc-scene" data-k="s-cta"><div class="lbc-cta">
+          <div data-k="clogo"><svg viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="18" fill="#0d111b"/><path d="M19 12v38" stroke="#fff" stroke-width="7" stroke-linecap="round"/><circle cx="33" cy="37" r="13" fill="none" stroke="#fff" stroke-width="7"/><path d="M27.5 37.5l4 4 8-8.5" fill="none" stroke="#0098f2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div class="lbc-cta-url" data-k="curl">leboncivique<em>.fr</em></div>
+          <span class="lbc-btn dark" data-k="cbtn">S’entraîner maintenant →</span>
+          <small>Outil de révision indépendant et non officiel.</small>
+        </div></div>
+
+        <span class="lbc-ring" data-k="ring"></span>
+        <div class="lbc-cursor" data-k="cur"><svg viewBox="0 0 24 24"><path d="M4 2.5l15 9.2-6.6 1.5 3.9 7.3-2.9 1.5-3.9-7.4L4.6 19z" fill="#1e1e1e" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg></div>
+      </div></div>
+      <div class="lbc-subs">
+        {SCENES.map((s) => <p class="lbc-sub" data-k={`u-${s.id}`}><span>{s.sub}</span></p>)}
+      </div>
+      <div class="lbc-prog"><i data-k="prog"></i></div>
+    </div>
+  </div>
+  <figcaption class="sr-only">
+    Comment fonctionne le quiz, en cinq étapes&#8239;:
+    <ol>
+      {SCENES.slice(1, 6).map((s) => <li>{s.title}. {s.sub}</li>)}
+    </ol>
+  </figcaption>
+  <div class="lbc-bar-ctl">
+    <button type="button" class="lbc-toggle" data-lbc-toggle aria-pressed="false" hidden>
+      <svg class="ic-pause" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="3" y="2" width="3.5" height="12" rx="1" fill="currentColor"/><rect x="9.5" y="2" width="3.5" height="12" rx="1" fill="currentColor"/></svg>
+      <svg class="ic-play" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z" fill="currentColor"/></svg>
+      <span data-lbc-label>Mettre en pause l’animation</span>
+    </button>
+  </div>
+</figure>
+<script>
+  import '../scripts/explainer';
+</script>
