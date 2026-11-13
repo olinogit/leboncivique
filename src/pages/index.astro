@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { ROUTES } from '../i18n/routes';
 import Icon from '../components/Icon.astro';
+import QuizExplainer from '../components/QuizExplainer.astro';
 ---
 <Base lang="fr" page="home" title="Le bon civique : comprendre et réussir l'examen civique 2026"
   description="Examen civique 2026 : qui est concerné, comment il se déroule, et un quiz gratuit avec mises en situation pour s'entraîner (carte de séjour pluriannuelle, carte de résident, naturalisation).">
@@ -32,5 +33,6 @@ import Icon from '../components/Icon.astro';
 
   <h2>Un quiz pensé comme l'examen</h2>
   <p>Entraînez-vous par série de 10 à 40 questions, ou passez un <b>examen blanc</b> de 40 questions (28 de connaissances et 12 mises en situation) en 45 minutes. Chaque réponse est expliquée et renvoie vers la fiche officielle. Le quiz est gratuit, sans inscription, et se passe exclusivement en français, comme l'examen.</p>
+  <QuizExplainer />
   <p><a class="btn btn-ghost btn-icon" href={ROUTES.samples.fr}><Icon name="eye" size={20} /><span>Voir des questions d'exemple</span><span class="btn-arrow"><Icon name="arrow" size={18} /></span></a></p>
 </Base>
